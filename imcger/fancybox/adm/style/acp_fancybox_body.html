@@ -1,0 +1,110 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{{ lang('FANCYBOX_TITLE') }}</h1>
+
+<p>{{ lang('FANCYBOX_TITLE_EXPLAIN') }}</p>
+
+<form id="acp_board" method="post" action="{U_ACTION}">
+
+	<fieldset>
+		<legend>{{ lang('FANCYBOX_VERSION') }}</legend>
+		<dl>
+			<dt><label for="imcger_fancybox_version">{{ lang('FANCYBOX_VERSION') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_VERSION_DESC') }}</span></dt>
+			<dd>
+				{% if IMCGER_FANCYBOX_IS_VERSION_3 %} <input onclick="setFancyboxVersion(3)" type="radio" class="radio" id="imcger_fancybox_version_3" name="imcger_fancybox_version" value='3' {% if IMCGER_FANCYBOX_VERSION == 3 && IMCGER_FANCYBOX_IS_VERSION_3 %} checked="checked"{% endif %} /> {{ lang('FANCYBOX_VERSION_V3') }} {% endif %}
+				{% if IMCGER_FANCYBOX_IS_VERSION_4 %} <input onclick="setFancyboxVersion(4)" type="radio" class="radio" id="imcger_fancybox_version_4" name="imcger_fancybox_version" value='4' {% if IMCGER_FANCYBOX_VERSION == 4 && IMCGER_FANCYBOX_IS_VERSION_4 %} checked="checked"{% endif %} /> {{ lang('FANCYBOX_VERSION_V4') }} {% endif %}
+				{% if !IMCGER_FANCYBOX_IS_VERSION_3 && !IMCGER_FANCYBOX_IS_VERSION_4 %} {{ lang('FANCYBOX_VERSION_NONE') }} {% endif %}
+			</dd>
+		</dl>
+	</fieldset>
+
+	<fieldset>
+		<legend>{{ lang('FANCYBOX_SETTINGS_TOOLBAR') }}</legend>
+		<dl>
+			<dt><label for="imcger_fancybox_toolbar_button_zoom">{{ lang('FANCYBOX_TOOLBAR_BUTTON_ZOOM') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_ZOOM_DESC') }}</span></dt>
+			<dd>
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_zoom" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_ZOOM %} checked="checked"{% endif %} /> {{ lang('YES') }}
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_zoom" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_ZOOM %} checked="checked"{% endif %} /> {{ lang('NO') }}
+			</dd>
+		</dl>
+		<dl id="FancyboxToolbarButtonShare">
+			<dt><label for="imcger_fancybox_toolbar_button_share">{{ lang('FANCYBOX_TOOLBAR_BUTTON_SHARE') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_SHARE_DESC') }}</span></dt>
+			<dd>
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_share" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_SHARE %} checked="checked"{% endif %} /> {{ lang('YES') }}
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_share" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_SHARE %} checked="checked"{% endif %} /> {{ lang('NO') }}
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="imcger_fancybox_toolbar_button_slshow">{{ lang('FANCYBOX_TOOLBAR_BUTTON_SLIDESHOW') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_SLIDESHOW_DESC') }}</span></dt>
+			<dd>
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_slshow" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_SLSHOW %} checked="checked"{% endif %} /> {{ lang('YES') }}
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_slshow" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_SLSHOW %} checked="checked"{% endif %} /> {{ lang('NO') }}
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="imcger_fancybox_toolbar_button_fullscr">{{ lang('FANCYBOX_TOOLBAR_BUTTON_FULLSCREEN') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_FULLSCREEN_DESC') }}</span></dt>
+			<dd>
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_fullscr" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_FULLSCR %} checked="checked"{% endif %} /> {{ lang('YES') }}
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_fullscr" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_FULLSCR %} checked="checked"{% endif %} /> {{ lang('NO') }}
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="imcger_fancybox_toolbar_button_download">{{ lang('FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD_DESC') }}</span></dt>
+			<dd>
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_download" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD %} checked="checked"{% endif %} /> {{ lang('YES') }}
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_download" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD %} checked="checked"{% endif %} /> {{ lang('NO') }}
+			</dd>
+		</dl>
+		<dl>
+			<dt><label for="imcger_fancybox_toolbar_button_thumbs">{{ lang('FANCYBOX_TOOLBAR_BUTTON_THUMBS') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_THUMBS_DESC') }}</span></dt>
+			<dd>
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_thumbs" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_THUMBS %} checked="checked"{% endif %} /> {{ lang('YES') }}
+				<input type="radio" class="radio" name="imcger_fancybox_toolbar_button_thumbs" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_THUMBS %} checked="checked"{% endif %} /> {{ lang('NO') }}
+			</dd>
+		</dl>
+	</fieldset>
+	
+	<fieldset id="FancyboxSettingsEffect">
+		<legend>{{ lang('FANCYBOX_SETTINGS_EFFECT') }}</legend>
+		<dl>
+			<dt><label for="imcger_fancybox_transitionEffect">{{ lang('FANCYBOX_TRANSITIONEFFECT') }} {{ lang('COLON') }}</label><br /><span>{{ lang('FANCYBOX_TRANSITIONEFFECT_DESC') }}</span></dt>
+			<dd>
+				<select name="imcger_fancybox_transitionEffect">
+					<option value="false"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'false' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_FALSE') }}</option>
+					<option value="fade"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'fade' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_FADE') }}</option>
+					<option value="slide"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'slide' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_SLIDE') }}</option>
+					<option value="circular"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'circular' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_CIRCULAR') }}</option>					
+					<option value="tube"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'tube' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_TUBE') }}</option>					
+					<option value="zoom-in-out"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'zoom-in-out' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_ZOOM-IN-OUT') }}</option>					
+					<option value="rotate"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'rotate' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_ROTATE') }}</option>					
+				</select>
+			</dd>
+		</dl>
+	</fieldset>
+	
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" {% if !IMCGER_FANCYBOX_IS_VERSION_3 && !IMCGER_FANCYBOX_IS_VERSION_4 %} disabled {% endif %} />
+		{S_FORM_TOKEN}
+	</fieldset>
+</form>
+
+<script>
+	/* Einstellungs Dialog für Fancybox Version anpassen */
+	function setFancyboxVersion(FancyboxVersion) {
+		if(FancyboxVersion > 3) {
+			document.getElementById("FancyboxSettingsEffect").style.display = "none";
+			document.getElementById("FancyboxToolbarButtonShare").style.display = "none";
+		} else {
+			document.getElementById("FancyboxSettingsEffect").style.display = "block";
+			document.getElementById("FancyboxToolbarButtonShare").style.display = "block";
+		}
+	}
+
+	/* Beim Laden der Seite den Einstellungs Dialog für Fancybox Version anpassen. */
+	document.addEventListener('DOMContentLoaded', function () {
+		let radioButton = document.querySelector('input[name="imcger_fancybox_version"]:checked').value;
+		setFancyboxVersion(radioButton);
+	});
+</script>
+
+<!-- INCLUDE overall_footer.html -->

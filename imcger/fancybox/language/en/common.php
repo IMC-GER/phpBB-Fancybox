@@ -1,0 +1,57 @@
+<?php
+/**
+*
+* Implements the image viewer Fancybox in phpBB. 
+* An extension for the phpBB Forum Software package.
+*
+* @copyright (c) 2021, Thorsten Ahlers
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
+*/
+
+if (!defined('IN_PHPBB'))
+{
+	exit;
+}
+
+if (empty($lang) || !is_array($lang))
+{
+	$lang = array();
+}
+
+$lang = array_merge($lang, array(
+	'FANCYBOX_TITLE' => 'Fancybox',
+	'FANCYBOX_TITLE_EXPLAIN' => 'Settings for the Fancybox image viewer. Note that Fancybox 3 is subject to the GPLv3 license for "open source use". For commercial use, a "Fancybox Commercial License" is required. Fancybox 4 must be licensed for any use. (https://fancyapps.com/fancybox/)',
+	
+	'FANCYBOX_VERSION' => 'Fancybox Version',
+	'FANCYBOX_VERSION_DESC' => 'Select Fancybox Version.',
+	'FANCYBOX_VERSION_NONE' => 'None Fancybox version available.',
+	'FANCYBOX_VERSION_V3' => 'Version 3',
+	'FANCYBOX_VERSION_V4' => 'Version 4',
+	
+	'FANCYBOX_SETTINGS_TOOLBAR' => 'Buttons appear in the top right corner.',
+	
+	'FANCYBOX_TOOLBAR_BUTTON_ZOOM' => 'Zoom in/out',
+	'FANCYBOX_TOOLBAR_BUTTON_ZOOM_DESC' => 'To resize the displayed image.',
+	'FANCYBOX_TOOLBAR_BUTTON_SHARE' => 'Share',
+	'FANCYBOX_TOOLBAR_BUTTON_SHARE_DESC' => 'The displayed image can be shared on Facebook, Twitter or Pinterest.',
+	'FANCYBOX_TOOLBAR_BUTTON_SLIDESHOW' => 'Start slideshow',
+	'FANCYBOX_TOOLBAR_BUTTON_SLIDESHOW_DESC' => 'Starts the automatic picture change every seconds.',
+	'FANCYBOX_TOOLBAR_BUTTON_FULLSCREEN' => 'Full screen',
+	'FANCYBOX_TOOLBAR_BUTTON_FULLSCREEN_DESC'=> 'Switch to full screen mode.',
+	'FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD' => 'Download',
+	'FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD_DESC' => 'Download the displayed image.',
+	'FANCYBOX_TOOLBAR_BUTTON_THUMBS' => 'Thumbnails',
+	'FANCYBOX_TOOLBAR_BUTTON_THUMBS_DESC' => 'A picture gallery with thumbnails can be created at the edge of the screen.',
+	
+	'FANCYBOX_SETTINGS_EFFECT' => 'Settings effect',
+	'FANCYBOX_TRANSITIONEFFECT' => 'Transition effect',
+	'FANCYBOX_TRANSITIONEFFECT_DESC' => 'Transition effect between slides.',
+	'FANCYBOX_TRANSITIONEFFECT_FALSE' => 'False',
+	'FANCYBOX_TRANSITIONEFFECT_FADE' => 'Fade',
+	'FANCYBOX_TRANSITIONEFFECT_SLIDE' => 'Slide',
+	'FANCYBOX_TRANSITIONEFFECT_CIRCULAR' => 'Circular',
+	'FANCYBOX_TRANSITIONEFFECT_TUBE' => 'Tube',
+	'FANCYBOX_TRANSITIONEFFECT_ZOOM-IN-OUT' => 'Zoom-in-out',
+	'FANCYBOX_TRANSITIONEFFECT_ROTATE' => 'Rotate',
+));
