@@ -13,11 +13,11 @@
 
 			<dd>
 				<label>
-					<input type="radio" class="radio" id="imcger_fancybox_version" name="imcger_fancybox_version" value="3"{% if onfig('imcger_fancybox_version') == 3 %} checked="checked"{% endif %}>
+					<input type="radio" class="radio" id="imcger_fancybox_version" name="imcger_fancybox_version" value="3"{% if config('imcger_fancybox_version') == 3 %} checked="checked"{% endif %}>
 					{{ lang('FANCYBOX_VERSION_V3') }}
 				</label>
 				<label>
-					<input type="radio" class="radio" id="imcger_fancybox_version" name="imcger_fancybox_version" value="4"{% if onfig('imcger_fancybox_version') == 4 %} checked="checked"{% endif %}>
+					<input type="radio" class="radio" id="imcger_fancybox_version" name="imcger_fancybox_version" value="4"{% if config('imcger_fancybox_version') == 4 %} checked="checked"{% endif %}>
 					{{ lang('FANCYBOX_VERSION_V4') }}
 				</label>
 			</dd>
