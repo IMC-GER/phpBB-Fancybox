@@ -51,22 +51,22 @@ class main_module
 		/*
 			Prüfen welche Fancybox Version installiert ist.
 		*/
-		$path = '../ext/imcger/fancybox/styles/all/fancybox/';
+		$path = '../ext/imcger/fancybox/styles/all/template/fancybox/';
 		$fancybox_v3_css = $path . 'jquery.fancybox.min.css';
 		$fancybox_v3_js  = $path . 'jquery.fancybox.min.js';
 		$fancybox_v4_css = $path . 'fancybox.css';
 		$fancybox_v4_js  = $path . 'fancybox.umd.js';
-		$is_fancybox3 = 0;
-		$is_fancybox4 = 0;
+		$is_fancybox3 = false;
+		$is_fancybox4 = false;
 		
 		if (file_exists($fancybox_v3_css) && file_exists($fancybox_v3_js))
 		{
-			$is_fancybox3 = 1;
+			$is_fancybox3 = true;
 		}
 		
 		if (file_exists($fancybox_v4_css) && file_exists($fancybox_v4_js))
 		{
-			$is_fancybox4 = 1;
+			$is_fancybox4 = true;
 		}
 
 		$template->assign_vars(array(

@@ -1,7 +1,8 @@
 {% if S_IMCGER_FANCYBOX_VERSION == 3 %}
-	<!-- INCLUDECSS ../fancybox/jquery.fancybox.min.css -->
-	<!-- INCLUDEJS ../fancybox/fancybox-prepare.js -->
-	<!-- INCLUDEJS ../fancybox/jquery.fancybox.min.js -->
+
+		{% INCLUDECSS '@imcger_fancybox/fancybox/jquery.fancybox.min.css' %}
+		{% INCLUDEJS '@imcger_fancybox/fancybox/fancybox-prepare.js' %}
+		{% INCLUDEJS '@imcger_fancybox/fancybox/jquery.fancybox.min.js' %}
 
 	<script>
 		$('[data-fancybox]').fancybox({
@@ -29,12 +30,14 @@
 		});
 	</script>
 {% endif %}
-{% if S_IMCGER_FANCYBOX_VERSION == 4 %}
-	<script>
-		<!-- INCLUDECSS ../fancybox/fancybox.css -->
-		<!-- INCLUDEJS ../fancybox/fancybox-prepare.js -->
-		<!-- INCLUDEJS ../fancybox/fancybox.umd.js -->
 
+{% if S_IMCGER_FANCYBOX_VERSION == 4 %}
+
+		{% INCLUDECSS '@imcger_fancybox/fancybox/fancybox.css' %}
+		{% INCLUDEJS '@imcger_fancybox/fancybox/fancybox-prepare.js' %}
+		{% INCLUDEJS '@imcger_fancybox/fancybox/fancybox.umd.js' %}
+
+	<script>
 		Fancybox.bind('[data-fancybox]', {
 			Toolbar: {
 				display: [
