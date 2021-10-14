@@ -47,33 +47,11 @@ class main_module
 			
 			trigger_error($user->lang('ACP_FANCYBOX_SETTING_SAVED') . adm_back_link($this->u_action));
 		}
-		
-		/*
-			Prüfen welche Fancybox Version installiert ist.
-		*/
-		$path = '../ext/imcger/fancybox/styles/all/template/fancybox/';
-		$fancybox_v3_css = $path . 'jquery.fancybox.min.css';
-		$fancybox_v3_js  = $path . 'jquery.fancybox.min.js';
-		$fancybox_v4_css = $path . 'fancybox.css';
-		$fancybox_v4_js  = $path . 'fancybox.umd.js';
-		$is_fancybox3 = false;
-		$is_fancybox4 = false;
-		
-		if (file_exists($fancybox_v3_css) && file_exists($fancybox_v3_js))
-		{
-			$is_fancybox3 = true;
-		}
-		
-		if (file_exists($fancybox_v4_css) && file_exists($fancybox_v4_js))
-		{
-			$is_fancybox4 = true;
-		}
 
 		$template->assign_vars(array(
 			'U_ACTION'									=> $this->u_action,
-			'IMCGER_FANCYBOX_IS_VERSION_3'				=> $is_fancybox3,
-			'IMCGER_FANCYBOX_IS_VERSION_4'				=> $is_fancybox4,
-			'IMCGER_FANCYBOX_VERSION'					=> $config['imcger_fancybox_version'],
+
+			'IMCGER_FANCYBOX_VERSION'					=> (int) $config['imcger_fancybox_version'],
 			'IMCGER_FANCYBOX_TRANSITIONEFFECT'			=> $config['imcger_fancybox_transitionEffect'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_ZOOM'		=> $config['imcger_fancybox_toolbar_button_zoom'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_SHARE'		=> $config['imcger_fancybox_toolbar_button_share'],
