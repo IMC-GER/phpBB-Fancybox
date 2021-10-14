@@ -65,11 +65,11 @@ class main_listener implements EventSubscriberInterface
 		$imcger_fancybox_language			= substr($this->user->lang['USER_LANG'], 0, 2);
 		
 		// When Fancybox 4
-		if ($imcger_fancybox_version > 3)
-		{
+		//if ($imcger_fancybox_version == 4)
+		//{
 			$imcger_fancybox_toolbar = strtolower($imcger_fancybox_toolbar);
 			$imcger_fancybox_thumbs  = (bool) $this->config['imcger_fancybox_toolbar_button_thumbs'];
-		}
+		//}
 
 		$this->template->assign_vars([
 			'S_IMCGER_FANCYBOX_VERSION'			=> $imcger_fancybox_version,

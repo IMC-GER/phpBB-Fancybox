@@ -36,7 +36,7 @@ class main_module
 				trigger_error('FORM_INVALID', E_USER_WARNING);
 			}
 			
-			$config->set('imcger_fancybox_version', $request->variable('imcger_fancybox_version', 3));
+			$config->set('imcger_fancybox_version', $request->variable('imcger_fancybox_version', 0));
 			$config->set('imcger_fancybox_transitionEffect', $request->variable('imcger_fancybox_transitionEffect', 'slide'));
 			$config->set('imcger_fancybox_toolbar_button_zoom', $request->variable('imcger_fancybox_toolbar_button_zoom', 1));
 			$config->set('imcger_fancybox_toolbar_button_share', $request->variable('imcger_fancybox_toolbar_button_share', 0));
@@ -80,7 +80,7 @@ class main_module
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_SLSHOW'		=> $config['imcger_fancybox_toolbar_button_slshow'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_FULLSCR'	=> $config['imcger_fancybox_toolbar_button_fullscr'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD'	=> $config['imcger_fancybox_toolbar_button_download'],
-			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_THUMBS'		=> $config['imcger_fancybox_toolbar_button_thumbs'],			
+			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_THUMBS'		=> $config['imcger_fancybox_toolbar_button_thumbs'],
 		));
 	}
 }
