@@ -56,20 +56,17 @@ class main_listener implements EventSubscriberInterface
 
 		$imcger_fancybox_version			= $this->config['imcger_fancybox_version'];
 		$imcger_fancybox_toolbar			= $this->config['imcger_fancybox_toolbar_button_zoom'] ? '"zoom",' : '';
-		$imcger_fancybox_toolbar		   .= ($this->config['imcger_fancybox_toolbar_button_share'] && ($imcger_fancybox_version == 3)) ? '"share",' : '';
-		$imcger_fancybox_toolbar		   .= $this->config['imcger_fancybox_toolbar_button_slshow'] ? '"slideShow",' : '';
-		$imcger_fancybox_toolbar		   .= $this->config['imcger_fancybox_toolbar_button_fullscr'] ? '"fullScreen",' : '';
-		$imcger_fancybox_toolbar		   .= $this->config['imcger_fancybox_toolbar_button_download'] ? '"download",' : '';
-		$imcger_fancybox_toolbar		   .= $this->config['imcger_fancybox_toolbar_button_thumbs'] ? '"thumbs",' : '';
+
+		$imcger_fancybox_toolbar			.= ($this->config['imcger_fancybox_toolbar_button_share'] && ($imcger_fancybox_version == 3)) ? '"share",' : '';
+		$imcger_fancybox_toolbar			.= $this->config['imcger_fancybox_toolbar_button_slshow'] ? '"slideShow",' : '';
+		$imcger_fancybox_toolbar			.= $this->config['imcger_fancybox_toolbar_button_fullscr'] ? '"fullScreen",' : '';
+		$imcger_fancybox_toolbar			.= $this->config['imcger_fancybox_toolbar_button_download'] ? '"download",' : '';
+		$imcger_fancybox_toolbar			.= $this->config['imcger_fancybox_toolbar_button_thumbs'] ? '"thumbs",' : '';
+
 		$imcger_fancybox_transitionEffect	= $this->config['imcger_fancybox_transitionEffect'];
 		$imcger_fancybox_language			= substr($this->user->lang['USER_LANG'], 0, 2);
-		
-		// When Fancybox 4
-		//if ($imcger_fancybox_version == 4)
-		//{
-			$imcger_fancybox_toolbar = strtolower($imcger_fancybox_toolbar);
-			$imcger_fancybox_thumbs  = (bool) $this->config['imcger_fancybox_toolbar_button_thumbs'];
-		//}
+		$imcger_fancybox_toolbar			= strtolower($imcger_fancybox_toolbar);
+		$imcger_fancybox_thumbs				= (bool) $this->config['imcger_fancybox_toolbar_button_thumbs'];
 
 		$this->template->assign_vars([
 			'S_IMCGER_FANCYBOX_VERSION'			=> $imcger_fancybox_version,
