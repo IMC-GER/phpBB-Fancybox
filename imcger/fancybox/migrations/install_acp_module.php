@@ -25,27 +25,8 @@ class install_acp_module extends \phpbb\db\migration\migration
 
 	public function update_data()
 	{
-		/*
-			Prüfen welche Fancybox Version installiert ist.
-		*/
-		$path = '../ext/imcger/fancybox/styles/all/fancybox/';
-		$fancybox_v3_css = $path . 'jquery.fancybox.min.css';
-		$fancybox_v3_js  = $path . 'jquery.fancybox.min.js';
-		$fancybox_v4_css = $path . 'fancybox.css';
-		$fancybox_v4_js  = $path . 'fancybox.umd.js';
-		$is_fancybox = 0;
-		
-		if (file_exists($fancybox_v3_css) && file_exists($fancybox_v3_js))
-		{
-			$is_fancybox = 3;
-		}
-		else if (file_exists($fancybox_v4_css) && file_exists($fancybox_v4_js))
-		{
-			$is_fancybox = 4;
-		}		
-		
 		return array(
-			array('config.add', array('imcger_fancybox_version', $is_fancybox)),
+			array('config.add', array('imcger_fancybox_version', 0)),
 			array('config.add', array('imcger_fancybox_toolbar_button_zoom', 1)),
 			array('config.add', array('imcger_fancybox_toolbar_button_share', 0)),
 			array('config.add', array('imcger_fancybox_toolbar_button_slshow', 0)),
