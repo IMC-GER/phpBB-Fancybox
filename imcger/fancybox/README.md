@@ -54,7 +54,8 @@ Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 
 **Fancybox v3**
 Is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0) license for all open source applications.
-A commercial license is required for commercial use. [Fancybox 3](https://fancyapps.com/fancybox)
+A commercial license is required for commercial use.
+[Fancybox 3](https://fancyapps.com/fancybox)
 
 **Fancybox v4** 
 You need a Fancybox license for none commercial use and commercial use.
