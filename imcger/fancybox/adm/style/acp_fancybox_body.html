@@ -11,9 +11,19 @@
 		<dl>
 			<dt><label for="imcger_fancybox_version">{{ lang('FANCYBOX_VERSION') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_VERSION_DESC') }}</span></dt>
 			<dd>
-				{% if IMCGER_FANCYBOX_IS_VERSION_3 %} <input onclick="setFancyboxVersion(3)" type="radio" class="radio" id="imcger_fancybox_version_3" name="imcger_fancybox_version" value='3' {% if IMCGER_FANCYBOX_VERSION == 3 && IMCGER_FANCYBOX_IS_VERSION_3 %} checked="checked"{% endif %} /> {{ lang('FANCYBOX_VERSION_V3') }} {% endif %}
-				{% if IMCGER_FANCYBOX_IS_VERSION_4 %} <input onclick="setFancyboxVersion(4)" type="radio" class="radio" id="imcger_fancybox_version_4" name="imcger_fancybox_version" value='4' {% if IMCGER_FANCYBOX_VERSION == 4 && IMCGER_FANCYBOX_IS_VERSION_4 %} checked="checked"{% endif %} /> {{ lang('FANCYBOX_VERSION_V4') }} {% endif %}
-				{% if !IMCGER_FANCYBOX_IS_VERSION_3 && !IMCGER_FANCYBOX_IS_VERSION_4 %} {{ lang('FANCYBOX_VERSION_NONE') }} {% endif %}
+				{% if IMCGER_FANCYBOX_IS_VERSION_3 %}
+					<input onclick="setFancyboxVersion(3)" type="radio" class="radio" id="imcger_fancybox_version_3" name="imcger_fancybox_version" value='3' {% if IMCGER_FANCYBOX_VERSION == 3 && IMCGER_FANCYBOX_IS_VERSION_3 %} checked="checked"{% endif %} />
+					{{ lang('FANCYBOX_VERSION_V3') }}
+				{% endif %}
+				
+				{% if IMCGER_FANCYBOX_IS_VERSION_4 %}
+					<input onclick="setFancyboxVersion(4)" type="radio" class="radio" id="imcger_fancybox_version_4" name="imcger_fancybox_version" value='4' {% if IMCGER_FANCYBOX_VERSION == 4 && IMCGER_FANCYBOX_IS_VERSION_4 %} checked="checked"{% endif %} />
+					{{ lang('FANCYBOX_VERSION_V4') }}
+				{% endif %}
+				
+				{% if !IMCGER_FANCYBOX_IS_VERSION_3 && !IMCGER_FANCYBOX_IS_VERSION_4 %} 
+					{{ lang('FANCYBOX_VERSION_NONE') }}
+				{% endif %}
 			</dd>
 		</dl>
 	</fieldset>
