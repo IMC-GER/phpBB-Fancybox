@@ -36,7 +36,7 @@ class main_module
 				trigger_error('FORM_INVALID', E_USER_WARNING);
 			}
 			
-			$config->set('imcger_fancybox_version', $request->variable('imcger_fancybox_version', 3));
+			$config->set('imcger_fancybox_version', $request->variable('imcger_fancybox_version', 0));
 			$config->set('imcger_fancybox_transitionEffect', $request->variable('imcger_fancybox_transitionEffect', 'slide'));
 			$config->set('imcger_fancybox_toolbar_button_zoom', $request->variable('imcger_fancybox_toolbar_button_zoom', 1));
 			$config->set('imcger_fancybox_toolbar_button_share', $request->variable('imcger_fancybox_toolbar_button_share', 0));
@@ -56,17 +56,17 @@ class main_module
 		$fancybox_v3_js  = $path . 'jquery.fancybox.min.js';
 		$fancybox_v4_css = $path . 'fancybox.css';
 		$fancybox_v4_js  = $path . 'fancybox.umd.js';
-		$is_fancybox3 = 0;
-		$is_fancybox4 = 0;
+		$is_fancybox3 = false;
+		$is_fancybox4 = false;
 		
 		if (file_exists($fancybox_v3_css) && file_exists($fancybox_v3_js))
 		{
-			$is_fancybox3 = 1;
+			$is_fancybox3 = true;
 		}
 		
 		if (file_exists($fancybox_v4_css) && file_exists($fancybox_v4_js))
 		{
-			$is_fancybox4 = 1;
+			$is_fancybox4 = true;
 		}
 
 		$template->assign_vars(array(
