@@ -28,7 +28,7 @@ class install_acp_module extends \phpbb\db\migration\migration
 		/*
 			Prüfen welche Fancybox Version installiert ist.
 		*/
-		$path = '../ext/imcger/fancybox/styles/all/fancybox/';
+		$path = '../ext/imcger/fancybox/styles/all/template/fancybox/';
 		$fancybox_v3_css = $path . 'jquery.fancybox.min.css';
 		$fancybox_v3_js  = $path . 'jquery.fancybox.min.js';
 		$fancybox_v4_css = $path . 'fancybox.css';
