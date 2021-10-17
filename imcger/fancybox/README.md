@@ -40,6 +40,7 @@ Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 ## Update
 - Navigate in the ACP to `Customise -> Manage extensions`.
 - Click the `Disable` link for Fancybox.
+- Delete data` link for Fancybox.
 - Delete the `fancybox` folder from `phpBB3/ext/imcger/`.
 - Install the new Fancyboy extension.
  
