@@ -1,1 +1,1 @@
-imcger/fancybox/README.md
+imcger/phpBB-Fancybox/README.md
