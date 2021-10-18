@@ -1,1 +1,1 @@
-# phpBB-Fancybox
+imcger/fancybox/README.md
