@@ -1,0 +1,16 @@
+{% if S_IMCGER_FANCYBOX_VERSION == 3 && IMCGER_FANCYBOX_IMAGE_BORDERWIDTH %}
+	<style>
+		.fancybox-image{
+			border:{{ IMCGER_FANCYBOX_IMAGE_BORDERWIDTH }}px solid #{{ IMCGER_FANCYBOX_IMAGE_BORDERCOLOR }};
+		}
+	</style>
+{% endif %}
+
+{% if S_IMCGER_FANCYBOX_VERSION == 4 && IMCGER_FANCYBOX_IMAGE_BORDERWIDTH %}
+	<style>
+		.fancybox__image {
+			border: {{ IMCGER_FANCYBOX_IMAGE_BORDERWIDTH }}px solid #{{ IMCGER_FANCYBOX_IMAGE_BORDERCOLOR }};
+			object-fit: cover !important; /* workaround for gap between border and image */
+		}
+	</style>
+{% endif %}

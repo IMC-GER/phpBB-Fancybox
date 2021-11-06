@@ -15,7 +15,7 @@ class install_acp_module extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['imcger_fancybox_toolbar']);
+		return isset($this->config['imcger_fancybox_version']);
 	}
 
 	static public function depends_on()
@@ -42,7 +42,7 @@ class install_acp_module extends \phpbb\db\migration\migration
 		else if (file_exists($fancybox_v4_css) && file_exists($fancybox_v4_js))
 		{
 			$is_fancybox = 4;
-		}		
+		}
 		
 		return array(
 			array('config.add', array('imcger_fancybox_version', $is_fancybox)),

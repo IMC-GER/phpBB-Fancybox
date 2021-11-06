@@ -21,13 +21,16 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 	'FANCYBOX_TITLE' => 'Fancybox',
-	'FANCYBOX_TITLE_EXPLAIN' => 'Einstellungen für den Bildbetrachter Fancybox. Beachte dass die Fancybox 3 der GPLv3 Lizenz für "open source use" unterliegt. Für die kommerzielle Nutzung wird eine "Fancybox Kommerziell Lizenz" benötigt. Die Fancybox 4 muss für jegliche Nutzung Lizenziert werden. (https://fancyapps.com/fancybox/)',
+	'FANCYBOX_TITLE_EXPLAIN' => 'Einstellungen für den Bildbetrachter Fancybox. Beachte dass die Fancybox 3 der GPLv3 Lizenz für "open source use" unterliegt. Für die kommerzielle Nutzung wird eine "Fancybox Kommerziell Lizenz" benötigt. Die Fancybox 4 muss für jegliche Nutzung lizenziert werden. (https://fancyapps.com/fancybox/)',
 	
 	'FANCYBOX_VERSION' => 'Fancybox Version',
 	'FANCYBOX_VERSION_DESC' => 'Fancybox Version auswählen.',
 	'FANCYBOX_VERSION_NONE' => 'Keine Fancybox Version verfügbar.',
-	'FANCYBOX_VERSION_V3' => 'Version 3',
-	'FANCYBOX_VERSION_V4' => 'Version 4',
+	'FANCYBOX_VERSION' => 'Version',
+	
+	'FANCYBOX_SETTINGS_STYLE' => 'Einstellungen Style',
+	'FANCYBOX_IMAGES_STYLE' => 'Bilderrahmen',
+	'FANCYBOX_IMAGES_STYLE_DESC' => 'Die Breite des Bilderrahmens wird in "px" angeben. Bei der Eingabe von 0 wird kein Rahmen angezeigt.<br>Die Angabe der Farbe für den Bilderrahmen wird als 6 stelligen Hex-Wert angegeben.',
 	
 	'FANCYBOX_SETTINGS_TOOLBAR' => 'Anzeige Toolbar-Button',
 	

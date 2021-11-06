@@ -37,6 +37,8 @@ class main_module
 			}
 			
 			$config->set('imcger_fancybox_version', $request->variable('imcger_fancybox_version', 0));
+			$config->set('imcger_fancybox_image_borderwidth', $request->variable('imcger_fancybox_image_borderwidth', 0));
+			$config->set('imcger_fancybox_image_bordercolor', $request->variable('imcger_fancybox_image_bordercolor', 'ffffff'));
 			$config->set('imcger_fancybox_transitionEffect', $request->variable('imcger_fancybox_transitionEffect', 'slide'));
 			$config->set('imcger_fancybox_toolbar_button_zoom', $request->variable('imcger_fancybox_toolbar_button_zoom', 1));
 			$config->set('imcger_fancybox_toolbar_button_share', $request->variable('imcger_fancybox_toolbar_button_share', 0));
@@ -61,12 +63,35 @@ class main_module
 		
 		if (file_exists($fancybox_v3_css) && file_exists($fancybox_v3_js))
 		{
-			$is_fancybox3 = true;
+			$is_fancybox3 = '3';
+			
+			$handle = @fopen($fancybox_v3_js, "r");
+			
+			while (($buffer = fgets($handle, 4096)) !== false) 
+			{
+				if(($pos = strpos($buffer, "v3", 0)) !== false)
+				{
+					$is_fancybox3 = substr($buffer, ($pos + 1));
+					break;
+				}
+			}
+			
+			fclose($handle);
 		}
 		
 		if (file_exists($fancybox_v4_css) && file_exists($fancybox_v4_js))
 		{
-			$is_fancybox4 = true;
+			$is_fancybox4 = '4';
+			
+			$handle = @fopen($fancybox_v4_js, "r");
+			$buffer = fgets($handle, 4096);
+			fclose($handle);
+			
+			$pos = strpos($buffer, "v4", 0);
+			if($pos !== false)
+			{
+				$is_fancybox4 = substr($buffer, ($pos + 1));
+			}
 		}
 
 		$template->assign_vars(array(
@@ -75,12 +100,14 @@ class main_module
 			'IMCGER_FANCYBOX_IS_VERSION_4'				=> $is_fancybox4,
 			'IMCGER_FANCYBOX_VERSION'					=> $config['imcger_fancybox_version'],
 			'IMCGER_FANCYBOX_TRANSITIONEFFECT'			=> $config['imcger_fancybox_transitionEffect'],
+			'IMCGER_FANCYBOX_IMAGES_BORDERWIDTH'		=> $config['imcger_fancybox_image_borderwidth'],
+			'IMCGER_FANCYBOX_IMAGES_BORDERCOLOR'		=> $config['imcger_fancybox_image_bordercolor'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_ZOOM'		=> $config['imcger_fancybox_toolbar_button_zoom'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_SHARE'		=> $config['imcger_fancybox_toolbar_button_share'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_SLSHOW'		=> $config['imcger_fancybox_toolbar_button_slshow'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_FULLSCR'	=> $config['imcger_fancybox_toolbar_button_fullscr'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD'	=> $config['imcger_fancybox_toolbar_button_download'],
-			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_THUMBS'		=> $config['imcger_fancybox_toolbar_button_thumbs'],			
+			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_THUMBS'		=> $config['imcger_fancybox_toolbar_button_thumbs'],
 		));
 	}
 }

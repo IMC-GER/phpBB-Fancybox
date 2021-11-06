@@ -55,6 +55,8 @@ class main_listener implements EventSubscriberInterface
 		$this->language->add_lang('fancybox_lang','imcger/fancybox');
 
 		$imcger_fancybox_version			= $this->config['imcger_fancybox_version'];
+		$imcger_fancybox_image_borderwidth	= $this->config['imcger_fancybox_image_borderwidth'];
+		$imcger_fancybox_image_bordercolor	= $this->config['imcger_fancybox_image_bordercolor'];
 		$imcger_fancybox_toolbar			= $this->config['imcger_fancybox_toolbar_button_zoom'] ? '"zoom",' : '';
 		$imcger_fancybox_toolbar		   .= ($this->config['imcger_fancybox_toolbar_button_share'] && ($imcger_fancybox_version == 3)) ? '"share",' : '';
 		$imcger_fancybox_toolbar		   .= $this->config['imcger_fancybox_toolbar_button_slshow'] ? '"slideShow",' : '';
@@ -73,6 +75,8 @@ class main_listener implements EventSubscriberInterface
 
 		$this->template->assign_vars([
 			'S_IMCGER_FANCYBOX_VERSION'			=> $imcger_fancybox_version,
+			'IMCGER_FANCYBOX_IMAGE_BORDERWIDTH'	=> $imcger_fancybox_image_borderwidth,
+			'IMCGER_FANCYBOX_IMAGE_BORDERCOLOR'	=> $imcger_fancybox_image_bordercolor,
 			'IMCGER_FANCYBOX_TOOLBAR'			=> $imcger_fancybox_toolbar,
 			'IMCGER_FANCYBOX_THUMBS'			=> $imcger_fancybox_thumbs,
 			'IMCGER_FANCYBOX_TRANSITIONEFFECT'	=> $imcger_fancybox_transitionEffect,

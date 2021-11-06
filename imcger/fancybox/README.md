@@ -15,7 +15,7 @@ It will turn on a fancybox for displaying the large image of thumbnails.  It def
 
 Copy the extension to `phpBB3/ext/imcger/fancybox`
 
-Fancybox v3 is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0) license for all open source applications.
+Fancybox v3 is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) license for all open source applications.
 A commercial license is required for all commercial applications (including sites, themes and apps you plan to sell).
 
 If you use Fancybox v4 you need a Fancyapps license. More infos [Fancyapps](https://fancyapps.com).
@@ -30,6 +30,11 @@ Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 
 ## Changelog
 
+### v1.1.0 (06-11-2021)
+- Minor code change.
+- Show the Fancybox version in ACP.
+- Add settings for picture frame.
+
 ### v1.0.1 (15-10-2021)
 - Minor code change.
 - Using phpBB’s template syntax.
@@ -40,7 +45,6 @@ Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 ## Update
 - Navigate in the ACP to `Customise -> Manage extensions`.
 - Click the `Disable` link for Fancybox.
-- Delete data` link for Fancybox.
 - Delete the `fancybox` folder from `phpBB3/ext/imcger/`.
 - Install the new Fancyboy extension.
  
@@ -51,12 +55,11 @@ Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 
 ## License
 **phpBB-Fancybox**
-[GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0)
+[GPLv2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
 **Fancybox v3**
-Is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0) license for all open source applications.
-A commercial license is required for commercial use.
-[Fancybox 3](https://fancyapps.com/fancybox)
+Is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) license for all open source applications.
+A commercial license is required for commercial use. [Fancybox 3](https://fancyapps.com/fancybox)
 
 **Fancybox v4** 
 You need a Fancybox license for none commercial use and commercial use.

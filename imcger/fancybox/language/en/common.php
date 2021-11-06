@@ -26,8 +26,11 @@ $lang = array_merge($lang, array(
 	'FANCYBOX_VERSION' => 'Fancybox Version',
 	'FANCYBOX_VERSION_DESC' => 'Select Fancybox Version.',
 	'FANCYBOX_VERSION_NONE' => 'None Fancybox version available.',
-	'FANCYBOX_VERSION_V3' => 'Version 3',
-	'FANCYBOX_VERSION_V4' => 'Version 4',
+	'FANCYBOX_VERSION' => 'Version',
+	
+	'FANCYBOX_SETTINGS_STYLE' => 'Settings Style',
+	'FANCYBOX_IMAGES_STYLE' => 'Picture frame',
+	'FANCYBOX_IMAGES_STYLE_DESC' => 'The width of the picture frame is specified in "px". If 0 is entered, no frame is displayed.<br>The color for the picture frame is specified as a 6-digit hex value.',
 	
 	'FANCYBOX_SETTINGS_TOOLBAR' => 'Buttons appear in the top right corner.',
 	
