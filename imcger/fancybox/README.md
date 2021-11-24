@@ -30,6 +30,9 @@ Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 
 ## Changelog
 
+### v1.2.0 (25-11-2021)
+- shows plain-text images like images inserted with BBcode
+
 ### v1.1.0 (06-11-2021)
 - Minor code change.
 - Show the Fancybox version in ACP.
