@@ -70,8 +70,8 @@ class main_listener implements EventSubscriberInterface
 		if($imcger_fancybox_version > 3)
 		{
 			$imcger_fancybox_toolbar = strtolower($imcger_fancybox_toolbar);
-			$imcger_fancybox_thumbs  = (bool)$this->config['imcger_fancybox_toolbar_button_thumbs'] ? 'true' : 'false';
 		}
+		$imcger_fancybox_thumbs  = (bool)$this->config['imcger_fancybox_toolbar_button_thumbs'] ? 'true' : 'false';
 
 		$this->template->assign_vars([
 			'S_IMCGER_FANCYBOX_VERSION'			=> $imcger_fancybox_version,
