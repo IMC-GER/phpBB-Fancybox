@@ -2,7 +2,7 @@
 		IMC JavaScript Programm
 	--------------------------------------------------------------
 		Name: fancybox-prepare.js
-		Last edit: 25.11.2021
+		Last edit: 06.12.2021
 		Copyright: (c) 2021 Thorsten Ahlers
 		License: GNU General Public License, version 2 (GPL-2.0)
 	--------------------------------------------------------------	
@@ -42,6 +42,14 @@ for (i = 0; i < x.length; i++) {
 	x[i].insertAdjacentHTML("afterend",newEle);
 	x[i].remove();
 }
+x  = document.querySelectorAll(".imcger-img-wrap");
+for (i = 0; i < x.length; i++) {
+	var srcAttr = x[i].children[0].getAttribute("src");
+	var newEle = '<a href="' + srcAttr + '" data-fancybox="image" data-caption="' + srcAttr + '">' + x[i].outerHTML + '</a>';
+
+	x[i].insertAdjacentHTML("afterend",newEle);
+	x[i].remove();
+}
 
 /* Verlinkte Bilder */
 x  = document.querySelectorAll(".postlink");
@@ -50,11 +58,9 @@ for (i = 0; i < x.length; i++) {
 	var url = x[i].getAttribute("href");
 	var usa = url.split(".");
 	
-	/* Wenn auf ein erlaubtes Bild verlinkt wird Attribute setzen und wie BBCode IMG anzeigen */
+	/* Wenn auf ein erlaubtes Bild verlinkt wird Attribute setzen */
 	if(ext.includes(usa[usa.length-1].toLocaleLowerCase())) {
-		var srcAttr = x[i].getAttribute("href");
-		var newEle = '<a href="' + srcAttr + '" data-fancybox="image" data-caption="' + srcAttr + '">' +  '<img src="' + srcAttr + '" class="postimage" alt="' + srcAttr + '">' + '</a>';
-		x[i].insertAdjacentHTML("afterend",newEle);
-		x[i].remove();
+		x[i].setAttribute("data-fancybox","image");
+		x[i].setAttribute("data-caption", url);
 	}
 }
