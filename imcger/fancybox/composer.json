@@ -3,8 +3,8 @@
 		"type": "phpbb-extension",
 		"description": "Insert the images viewer Fancybox. Fancybox 3 licensed GPLv3 for open source use. http://fancyapps.com/fancybox/",
 		"homepage": "",
-		"version": "1.2.1",
-		"time": "2021-12-06",
+		"version": "1.2.2",
+		"time": "2021-12-09",
 		"license": "GPL-2.0-only",
 		"authors": [
 					{
