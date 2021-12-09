@@ -2,7 +2,7 @@
 		IMC JavaScript Programm
 	--------------------------------------------------------------
 		Name: fancybox-prepare.js
-		Last edit: 06.12.2021
+		Last edit: 08.12.2021
 		Copyright: (c) 2021 Thorsten Ahlers
 		License: GNU General Public License, version 2 (GPL-2.0)
 	--------------------------------------------------------------	
@@ -42,7 +42,8 @@ for (i = 0; i < x.length; i++) {
 	x[i].insertAdjacentHTML("afterend",newEle);
 	x[i].remove();
 }
-x  = document.querySelectorAll(".imcger-img-wrap");
+/* Unterstützt Extension phpBB-External-Links */
+x  = document.getElementsByClassName("imcger-img-wrap");
 for (i = 0; i < x.length; i++) {
 	var srcAttr = x[i].children[0].getAttribute("src");
 	var newEle = '<a href="' + srcAttr + '" data-fancybox="image" data-caption="' + srcAttr + '">' + x[i].outerHTML + '</a>';
@@ -51,8 +52,8 @@ for (i = 0; i < x.length; i++) {
 	x[i].remove();
 }
 
-/* Verlinkte Bilder */
-x  = document.querySelectorAll(".postlink");
+/* Verlinkte Bilder Textlink */
+x  = document.getElementsByClassName("postlink");
 for (i = 0; i < x.length; i++) {
 	var ext = ["jpg", "jpeg", "gif", "png", "webp", "bmp", "svg"];
 	var url = x[i].getAttribute("href");
@@ -62,5 +63,13 @@ for (i = 0; i < x.length; i++) {
 	if(ext.includes(usa[usa.length-1].toLocaleLowerCase())) {
 		x[i].setAttribute("data-fancybox","image");
 		x[i].setAttribute("data-caption", url);
+	}
+}
+/* Unterstützt "UCP Display images within posts" */
+x  = document.getElementsByClassName("imageset");
+for (i = 0; i < x.length; i++) {
+	if(x[i].nextElementSibling.tagName == "A") {
+		x[i].nextElementSibling.setAttribute("data-fancybox","image");
+		x[i].nextElementSibling.setAttribute("data-caption", x[i].nextElementSibling.innerHTML);
 	}
 }
