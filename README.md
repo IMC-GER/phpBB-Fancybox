@@ -30,6 +30,9 @@ Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 
 ## Changelog
 
+### v1.2.2 (09-12-2021)
+- Bug: Support UCP setting `Display images within posts´, has priority.
+
 ### v1.2.1 (06-12-2021)
 - Remove: shows plain-text images like images inserted with BBcode, ist a part of phpBB extension "external-links".
 - Minor code change for php 8.0.
