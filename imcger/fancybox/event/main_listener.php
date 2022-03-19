@@ -1,13 +1,13 @@
 <?php
 /**
-*
-* Implements the image viewer Fancybox in phpBB. 
-* An extension for the phpBB Forum Software package.
-*
-* @copyright (c) 2021, Thorsten Ahlers
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Implements the image viewer Fancybox in phpBB.
+ * An extension for the phpBB Forum Software package.
+ *
+ * @copyright (c) 2022, Thorsten Ahlers
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace imcger\fancybox\event;
 
@@ -29,7 +29,7 @@ class main_listener implements EventSubscriberInterface
 
 	/** @var \phpbb\user */
 	protected $user;
-	
+
 	/** @var \phpbb\language\language */
 	protected $language;
 
@@ -42,7 +42,7 @@ class main_listener implements EventSubscriberInterface
 		$this->language = $language;
 	}
 
-	static public function getSubscribedEvents()
+	public static function getSubscribedEvents()
 	{
 		return array(
 			'core.page_header'		=>	'show_fancybox_var',
@@ -50,7 +50,7 @@ class main_listener implements EventSubscriberInterface
 	}
 
 	public function show_fancybox_var()
-	{  
+	{
 		// Add Fancybox language file
 		$this->language->add_lang('fancybox_lang','imcger/fancybox');
 
@@ -65,13 +65,13 @@ class main_listener implements EventSubscriberInterface
 		$imcger_fancybox_toolbar		   .= $this->config['imcger_fancybox_toolbar_button_thumbs'] ? '"thumbs",' : '';
 		$imcger_fancybox_transitionEffect	= $this->config['imcger_fancybox_transitionEffect'];
 		$imcger_fancybox_language			= substr($this->user->lang['USER_LANG'], 0, 2);
-		
+
 		// When Fancybox 4
-		if($imcger_fancybox_version > 3)
+		if ($imcger_fancybox_version > 3)
 		{
 			$imcger_fancybox_toolbar = strtolower($imcger_fancybox_toolbar);
 		}
-		$imcger_fancybox_thumbs  = (bool)$this->config['imcger_fancybox_toolbar_button_thumbs'] ? 'true' : 'false';
+		$imcger_fancybox_thumbs  = (bool) $this->config['imcger_fancybox_toolbar_button_thumbs'] ? 'true' : 'false';
 
 		$this->template->assign_vars([
 			'S_IMCGER_FANCYBOX_VERSION'			=> $imcger_fancybox_version,

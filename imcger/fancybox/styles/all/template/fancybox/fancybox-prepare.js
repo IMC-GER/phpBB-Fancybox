@@ -2,10 +2,10 @@
 		IMC JavaScript Programm
 	--------------------------------------------------------------
 		Name: fancybox-prepare.js
-		Last edit: 08.12.2021
+		Last edit: 09.12.2021
 		Copyright: (c) 2021 Thorsten Ahlers
 		License: GNU General Public License, version 2 (GPL-2.0)
-	--------------------------------------------------------------	
+	--------------------------------------------------------------
 		AddOn für die phpBB Forum Software.
 		Das Skript durchsucht die Seite nach Dateianhängen verlinkte Bilder
 		und Bilder die mit den BBCode eingefügt sind. Den Elementen werden
@@ -42,6 +42,7 @@ for (i = 0; i < x.length; i++) {
 	x[i].insertAdjacentHTML("afterend",newEle);
 	x[i].remove();
 }
+
 /* Unterstützt Extension phpBB-External-Links */
 x  = document.getElementsByClassName("imcger-img-wrap");
 for (i = 0; i < x.length; i++) {
@@ -58,13 +59,14 @@ for (i = 0; i < x.length; i++) {
 	var ext = ["jpg", "jpeg", "gif", "png", "webp", "bmp", "svg"];
 	var url = x[i].getAttribute("href");
 	var usa = url.split(".");
-	
+
 	/* Wenn auf ein erlaubtes Bild verlinkt wird Attribute setzen */
 	if(ext.includes(usa[usa.length-1].toLocaleLowerCase())) {
 		x[i].setAttribute("data-fancybox","image");
 		x[i].setAttribute("data-caption", url);
 	}
 }
+
 /* Unterstützt "UCP Display images within posts" */
 x  = document.getElementsByClassName("imageset");
 for (i = 0; i < x.length; i++) {

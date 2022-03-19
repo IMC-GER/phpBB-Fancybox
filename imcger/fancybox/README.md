@@ -7,7 +7,7 @@ The attached image files get the alternate text of the image as caption. With th
 It will turn on a fancybox for displaying the large image of thumbnails.  It defaults as a gallery showing all the attached images on the page. [Fancybox 3](https://fancyapps.com/fancybox)  
 
 ## Requirements
-- php 7.3 or higher
+- php 5.4.7 or higher
 - phpBB 3.2.0 or higher
 - Fancybox v3.5.7 or Fancybox v4.0
 
@@ -29,6 +29,9 @@ From the ACP, you can customize the toolbar and the transition effect during ima
 Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 
 ## Changelog
+
+### v1.2.3 (19-03-2022)
+- Cleanup Code
 
 ### v1.2.2 (09-12-2021)
 - Bug: Support UCP setting `Display images within posts´, has priority.
