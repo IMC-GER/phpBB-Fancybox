@@ -23,12 +23,19 @@ Buy a license and  copy the `fancybox.css` and `fancybox.umd.js` to `phpBB3/ext/
 
 Go to "ACP" > "Customise" > "Extensions Manager" and enable the "Fancybox" extension.
 
+## Importent
+
+When you use the extension `phpBB-External-Links` please update it to version v1.2.2 or higher.
+
 ## Settings
 
 From the ACP, you can customize the toolbar and the transition effect during image change.
 Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 
 ## Changelog
+
+### v1.2.4 (06-04-2022)
+- Code change (remove JS)
 
 ### v1.2.3 (19-03-2022)
 - Cleanup Code

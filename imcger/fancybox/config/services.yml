@@ -2,9 +2,11 @@ services:
     imcger.fancybox.listener:
         class: imcger\fancybox\event\main_listener
         arguments:
+            - '%core.table_prefix%'
             - '@config'
             - '@template'
             - '@user'
             - '@language'
+            - '@dbal.conn'
         tags:
             - { name: event.listener }

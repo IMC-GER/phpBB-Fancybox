@@ -1,0 +1,22 @@
+		<!-- IF _file.S_THUMBNAIL_IMCGER -->
+		<dl class="thumbnail">
+			<dt><a href="{_file.U_DOWNLOAD_LINK}" data-fancybox="image" data-caption="{% if _file.COMMENT %}{{ _file.COMMENT|e('html') }}{% else %}{{ _file.DOWNLOAD_NAME }}{% endif %}"><img src="{_file.THUMB_IMAGE}" class="postimage" alt="{% if _file.COMMENT %}{{ _file.COMMENT|e('html') }}{% else %}{{ _file.DOWNLOAD_NAME }}{% endif %}" title="{_file.DOWNLOAD_NAME} ({_file.FILESIZE} {_file.SIZE_LANG}) {_file.L_DOWNLOAD_COUNT}" /></a></dt>
+			<!-- IF _file.COMMENT --><dd> {_file.COMMENT}</dd><!-- ENDIF -->
+		</dl>
+		<!-- ENDIF -->
+
+		<!-- IF _file.S_IMAGE_IMCGER -->
+		<dl class="file">
+			<dt class="attach-image"><img src="{_file.U_INLINE_LINK}" class="postimage" data-fancybox="image" data-caption="{% if _file.COMMENT %}{{ _file.COMMENT|e('html') }}{% else %}{{ _file.DOWNLOAD_NAME }}{% endif %}" alt="{% if _file.COMMENT %}{{ _file.COMMENT|e('html') }}{% else %}{{ _file.DOWNLOAD_NAME }}{% endif %}" onclick="viewableArea(this);" /></dt>
+			<!-- IF _file.COMMENT --><dd><em>{_file.COMMENT}</em></dd><!-- ENDIF -->
+			<dd>{_file.DOWNLOAD_NAME} ({_file.FILESIZE} {_file.SIZE_LANG}) {_file.L_DOWNLOAD_COUNT}</dd>
+		</dl>
+		<!-- ENDIF -->
+
+		<!-- IF _file.S_FILE_IMCGER -->
+		<dl class="file">
+			<dt><!-- IF _file.UPLOAD_ICON -->{_file.UPLOAD_ICON} <!-- ENDIF --><a class="postlink" href="{_file.U_DOWNLOAD_LINK}" data-fancybox="image" data-caption="{% if _file.COMMENT %}{{ _file.COMMENT|e('html') }}{% else %}{{ _file.DOWNLOAD_NAME }}{% endif %}">{_file.DOWNLOAD_NAME}</a></dt>
+			<!-- IF _file.COMMENT --><dd><em>{_file.COMMENT}</em></dd><!-- ENDIF -->
+			<dd>({_file.FILESIZE} {_file.SIZE_LANG}) {_file.L_DOWNLOAD_COUNT}</dd>
+		</dl>
+		<!-- ENDIF -->

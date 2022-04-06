@@ -67,7 +67,7 @@ class main_module
 
 			$handle = @fopen($fancybox_v3_js, "r");
 
-			while (($buffer = fgets($handle, 4096)) !== false)
+			while (($buffer = fgets($handle, 100)) !== false)
 			{
 				if (($pos = strpos($buffer, "v3", 0)) !== false)
 				{
@@ -84,7 +84,7 @@ class main_module
 			$is_fancybox4 = '4';
 
 			$handle = @fopen($fancybox_v4_js, "r");
-			$buffer = fgets($handle, 4096);
+			$buffer = fgets($handle, 100);
 			fclose($handle);
 
 			$pos = strpos($buffer, "v4", 0);
