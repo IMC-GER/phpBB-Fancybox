@@ -34,6 +34,9 @@ Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 
 ## Changelog
 
+### v1.2.5 (07-10-2022)
+- Code change
+
 ### v1.2.4 (06-04-2022)
 - Code change (remove JS)
 

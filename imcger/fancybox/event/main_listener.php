@@ -39,6 +39,9 @@ class main_listener implements EventSubscriberInterface
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
+	/** @var bool is_ext_links */
+	protected $is_ext_links;
+
 
 	public function __construct
 	(
@@ -56,6 +59,12 @@ class main_listener implements EventSubscriberInterface
 		$this->user 	= $user;
 		$this->language = $language;
 		$this->db		= $db;
+
+		/* Check if extension "imcger/externallinks" aktive */
+		$sql = 'SELECT ext_active FROM ' . $this->table_prefix . 'ext WHERE ext_name = "imcger/externallinks"';
+		$result = $this->db->sql_query($sql);
+		$row = $this->db->sql_fetchrow($result);
+		$this->is_ext_links = empty($row['ext_active']) ? false : $row['ext_active'];
 	}
 
 	public static function getSubscribedEvents()
@@ -116,6 +125,12 @@ class main_listener implements EventSubscriberInterface
 
 	public function configure_textformatter($event)
 	{
+		/* if "imcger/externallinks" aktive, do nothing */
+		if ($this->is_ext_links)
+		{
+			return;
+		}
+
 		$link_img_template = '';
 		$link_url_template = '';
 
@@ -130,52 +145,44 @@ class main_listener implements EventSubscriberInterface
 		   <img src="{@src}" class="postimage" alt="{$L_IMAGE}"/> */
 		$default_img_template = $configurator->tags['IMG']->template;
 
-		/* Check if extension "imcger/externallinks" aktive */
-		$sql = 'SELECT ext_active FROM ' . $this->table_prefix . 'ext WHERE ext_name = "imcger/externallinks"';
-		$result = $this->db->sql_query($sql);
-		$row = $this->db->sql_fetchrow($result);
-		$is_ext_links = empty($row['ext_active']) ? false : $row['ext_active'];
+		/* Add Fancybox attribute to the default IMG template */
+		$link_img_template = $default_img_template;
+		$pos = 0;
 
-		/* if "imcger/externallinks" not aktive modify the IMG and URL template */
-		if (!$is_ext_links)
+		while ($pos = strpos($link_img_template, '<img src="{@src}"', $pos))
 		{
-			/* Add Fancybox attribute to the default IMG template */
-			$link_img_template = $default_img_template;
-			$pos = 0;
+			$link_img_template =  substr($link_img_template, 0, $pos) .
+								  '<a href="{@src}" data-fancybox="image" data-caption="{@src}">' .
+								  substr($link_img_template, $pos);
 
-			while ($pos = strpos($link_img_template, '<img src="{@src}"', $pos))
-			{
-				$link_img_template =  substr($link_img_template, 0, $pos) .
-									  '<a href="{@src}" data-fancybox="image" data-caption="{@src}">' .
-									  substr($link_img_template, $pos);
+			$pos = strpos($link_img_template, '/>', $pos);
 
-				$pos = strpos($link_img_template, '/>', $pos);
-
-				$link_img_template =  substr($link_img_template, 0, $pos+2) .
-									  '</a>' .
-									  substr($link_img_template, $pos+2);
-			}
-
-			/* Add Fancybox attribute to the URL template when link is an image */
-			$link_url_template = str_replace(
-				'href="{@url}"',
-				'href="{@url}"  data-fancybox="image" data-caption="{@url}" ',
-				$default_url_template
-			);
-			$link_url_template = '<xsl:choose>' .
-									/* Check if it an image */
-									'<xsl:when test="contains(@url, \'.jpg\') or contains(@url, \'.jpeg\') or contains(@url, \'.gif\') or contains(@url, \'.png\') or contains(@url, \'.webp\') or contains(@url, \'.svg\')">' .
-										$link_url_template .
-									'</xsl:when>' .
-									/* Link standard display */
-									'<xsl:otherwise>' .
-										$default_url_template .
-									'</xsl:otherwise>' .
-								'</xsl:choose>';
-
-			$configurator->tags['IMG']->template = $link_img_template;
-			$configurator->tags['URL']->template = $link_url_template;
+			$link_img_template =  substr($link_img_template, 0, $pos+2) .
+								  '</a>' .
+								  substr($link_img_template, $pos+2);
 		}
+
+		/* Add Fancybox attribute to the URL template when link is an image */
+		$link_url_template = str_replace(
+			'href="{@url}"',
+			'href="{@url}"  data-fancybox="image" data-caption="{@url}" ',
+			$default_url_template
+		);
+		$link_url_template = '<xsl:choose>' .
+								/* Check if it an image */
+								'<xsl:when test="contains(@url, \'.jpg\') or contains(@url, \'.jpeg\') or contains(@url, \'.gif\') or contains(@url, \'.png\') or contains(@url, \'.webp\') or contains(@url, \'.svg\') or ' .
+												'contains(@url, \'.JPG\') or contains(@url, \'.JPEG\') or contains(@url, \'.GIF\') or contains(@url, \'.PNG\') or contains(@url, \'.WEBP\') or contains(@url, \'.SVG\')">' .
+									$link_url_template .
+								'</xsl:when>' .
+								/* Link standard display */
+								'<xsl:otherwise>' .
+									$default_url_template .
+								'</xsl:otherwise>' .
+							'</xsl:choose>';
+
+		$configurator->tags['IMG']->template = $link_img_template;
+		$configurator->tags['URL']->template = $link_url_template;
+
 	}
 
 	public function show_fancybox_var()

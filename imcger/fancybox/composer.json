@@ -2,24 +2,29 @@
 	"name": "imcger/fancybox",
 	"type": "phpbb-extension",
 	"description": "Insert the images viewer Fancybox. Fancybox 3 licensed GPLv3 for open source use. http://fancyapps.com/fancybox/",
-	"homepage": "",
-	"version": "1.2.4",
-	"time": "2022-04-06",
+	"homepage": "https://github.com/IMC-GER/phpBB-Fancybox",
+	"version": "1.2.5",
+	"time": "2022-10-07",
 	"license": "GPL-2.0-only",
-	"authors": [
-				{
-				"name": "Thorsten Ahlers",
-				"homepage": "",
-				"role": "Developer"
-				}
-				],
+	"authors": [{
+			"name": "Thorsten Ahlers",
+			"homepage": "https://github.com/IMC-GER",
+			"role": "Developer"
+		}
+	],
 	"require": {
-				"php": ">=5.5"
-			},
+		"php": ">=5.5"
+	},
 	"extra": {
-				"display-name": "Fancybox",
-				"soft-require": {
-				"phpbb/phpbb": ">=3.2.0,<4.0.0@dev"
-				}
-			}
+		"display-name": "Fancybox",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.2.0,<4.0.0@dev"
+		},
+		"version-check": {
+			"host": "raw.githubusercontent.com",
+			"directory": "/IMC-GER/phpBB-Fancybox/main",
+			"filename": "fancybox_version.json",
+			"ssl": true
+		}
+	}
 }
