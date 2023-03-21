@@ -1,12 +1,21 @@
 services:
+    imcger.fancybox.admin.controller:
+        class: 'imcger\fancybox\controller\admin_controller'
+        arguments:
+            - '@config'
+            - '@template'
+            - '@language'
+            - '@request'
+            - '@ext.manager'
+
     imcger.fancybox.listener:
         class: imcger\fancybox\event\main_listener
         arguments:
-            - '%core.table_prefix%'
             - '@config'
             - '@template'
             - '@user'
             - '@language'
             - '@dbal.conn'
+            - '@ext.manager'
         tags:
             - { name: event.listener }

@@ -1,13 +1,13 @@
 <?php
 /**
-*
-* Implements the image viewer Fancybox in phpBB.
-* An extension for the phpBB Forum Software package.
-*
-* @copyright (c) 2022, Thorsten Ahlers
-* @license GNU General Public License, version 2 (GPL-2.0)
-*
-*/
+ *
+ * Implements the image viewer Fancybox in phpBB.
+ * An extension for the phpBB Forum Software package.
+ *
+ * @copyright (c) 2022, Thorsten Ahlers
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ */
 
 namespace imcger\fancybox\event;
 
@@ -21,9 +21,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class main_listener implements EventSubscriberInterface
 {
-	/* @var string table_prefix */
-	protected $table_prefix;
-
 	/** @var \phpbb\config\config */
 	protected $config;
 
@@ -39,32 +36,41 @@ class main_listener implements EventSubscriberInterface
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
+	/** @var \phpbb\extension\manager */
+	protected $ext_manager;
+
 	/** @var bool is_ext_links */
 	protected $is_ext_links;
 
-
+	/**
+	 * Constructor
+	 *
+	 * @param \phpbb\config\config				$config			Config object
+	 * @param \phpbb\template\template			$template		Template object
+	 * @param \phpbb\user						$user			User object
+	 * @param \phpbb\language\language			$language		language object
+	 * @param \phpbb\db\driver\driver_interface	$db				Driver interface object
+	 * @param \phpbb\extension\manager			$ext_manager	Extension manager object
+	 */
 	public function __construct
 	(
-		$table_prefix,
 		\phpbb\config\config $config,
 		\phpbb\template\template $template,
 		\phpbb\user $user,
 		\phpbb\language\language $language,
-		\phpbb\db\driver\driver_interface $db
+		\phpbb\db\driver\driver_interface $db,
+		\phpbb\extension\manager $ext_manager
 	)
 	{
-		$this->table_prefix	= $table_prefix;
-		$this->config   = $config;
-		$this->template = $template;
-		$this->user 	= $user;
-		$this->language = $language;
-		$this->db		= $db;
+		$this->config		= $config;
+		$this->template 	= $template;
+		$this->user 		= $user;
+		$this->language 	= $language;
+		$this->db			= $db;
+		$this->ext_manager	= $ext_manager;
 
 		/* Check if extension "imcger/externallinks" aktive */
-		$sql = 'SELECT ext_active FROM ' . $this->table_prefix . 'ext WHERE ext_name = "imcger/externallinks"';
-		$result = $this->db->sql_query($sql);
-		$row = $this->db->sql_fetchrow($result);
-		$this->is_ext_links = empty($row['ext_active']) ? false : $row['ext_active'];
+		$this->is_ext_links =  $this->ext_manager->is_enabled('imcger/externallinks');
 	}
 
 	public static function getSubscribedEvents()
@@ -103,8 +109,7 @@ class main_listener implements EventSubscriberInterface
 			$file_arr = explode('.', $block_array['DOWNLOAD_NAME']);
 			$file_ext = strtolower($file_arr[count($file_arr)-1]);
 
-			$table_prefix = $this->table_prefix;
-			$sql = 'SELECT extension FROM ' . $table_prefix . 'extensions WHERE group_id = 1';
+			$sql = 'SELECT extension FROM ' . EXTENSIONS_TABLE . ' WHERE group_id = (SELECT group_id FROM ' . EXTENSION_GROUPS_TABLE . ' WHERE group_name = "IMAGES")';
 			$result = $this->db->sql_query($sql);
 
 			while ($row = $this->db->sql_fetchrow($result))
@@ -118,6 +123,7 @@ class main_listener implements EventSubscriberInterface
 					break;
 				}
 			}
+			$this->db->sql_freeresult();
 		}
 
 		$event['block_array'] = $block_array;
@@ -152,7 +158,7 @@ class main_listener implements EventSubscriberInterface
 		while ($pos = strpos($link_img_template, '<img src="{@src}"', $pos))
 		{
 			$link_img_template =  substr($link_img_template, 0, $pos) .
-								  '<a href="{@src}" data-fancybox="image" data-caption="{@src}">' .
+								  '<a href="{@src}" class="fancybox" data-fancybox="image" data-caption="{@src}">' .
 								  substr($link_img_template, $pos);
 
 			$pos = strpos($link_img_template, '/>', $pos);
@@ -167,6 +173,11 @@ class main_listener implements EventSubscriberInterface
 			'href="{@url}"',
 			'href="{@url}"  data-fancybox="image" data-caption="{@url}" ',
 			$default_url_template
+		);
+		$link_url_template = str_replace(
+			'class="',
+			'class="fancybox ',
+			$link_url_template
 		);
 		$link_url_template = '<xsl:choose>' .
 								/* Check if it an image */
@@ -193,26 +204,47 @@ class main_listener implements EventSubscriberInterface
 		$imcger_fancybox_version			= $this->config['imcger_fancybox_version'];
 		$imcger_fancybox_image_borderwidth	= $this->config['imcger_fancybox_image_borderwidth'];
 		$imcger_fancybox_image_bordercolor	= $this->config['imcger_fancybox_image_bordercolor'];
-		$imcger_fancybox_toolbar			= $this->config['imcger_fancybox_toolbar_button_zoom'] ? '"zoom",' : '';
-		$imcger_fancybox_toolbar		   .= ($this->config['imcger_fancybox_toolbar_button_share'] && ($imcger_fancybox_version == 3)) ? '"share",' : '';
-		$imcger_fancybox_toolbar		   .= $this->config['imcger_fancybox_toolbar_button_slshow'] ? '"slideShow",' : '';
-		$imcger_fancybox_toolbar		   .= $this->config['imcger_fancybox_toolbar_button_fullscr'] ? '"fullScreen",' : '';
-		$imcger_fancybox_toolbar		   .= $this->config['imcger_fancybox_toolbar_button_download'] ? '"download",' : '';
-		$imcger_fancybox_toolbar		   .= $this->config['imcger_fancybox_toolbar_button_thumbs'] ? '"thumbs",' : '';
 		$imcger_fancybox_transitionEffect	= $this->config['imcger_fancybox_transitionEffect'];
-		$imcger_fancybox_language			= substr($this->user->lang['USER_LANG'], 0, 2);
+		$imcger_fancybox_language			= substr($this->language->lang('USER_LANG'), 0, 2);
+		$imcger_fancybox_toolbar_middle		= '';
 
-		/* When Fancybox 4 */
-		if ($imcger_fancybox_version > 3)
+		if ($imcger_fancybox_version < 5)
 		{
-			$imcger_fancybox_toolbar = strtolower($imcger_fancybox_toolbar);
+			// When Fancybox 3 or 4
+			$imcger_fancybox_toolbar  = $this->config['imcger_fancybox_toolbar_button_zoom'] ? '"zoom",' : '';
+			$imcger_fancybox_toolbar .= ($this->config['imcger_fancybox_toolbar_button_share'] && ($imcger_fancybox_version == 3)) ? '"share",' : '';
+			$imcger_fancybox_toolbar .= $this->config['imcger_fancybox_toolbar_button_slshow'] ? '"slideShow",' : '';
+			$imcger_fancybox_toolbar .= $this->config['imcger_fancybox_toolbar_button_fullscr'] ? '"fullScreen",' : '';
+			$imcger_fancybox_toolbar .= $this->config['imcger_fancybox_toolbar_button_download'] ? '"download",' : '';
+			$imcger_fancybox_toolbar .= $this->config['imcger_fancybox_toolbar_button_thumbs'] ? '"thumbs",' : '';
+
+			// When Fancybox 4
+			if ($imcger_fancybox_version > 3)
+			{
+				$imcger_fancybox_toolbar = strtolower($imcger_fancybox_toolbar);
+			}
+			$imcger_fancybox_thumbs  = (bool) $this->config['imcger_fancybox_toolbar_button_thumbs'] ? 'true' : 'false';
 		}
-		$imcger_fancybox_thumbs  = (bool) $this->config['imcger_fancybox_toolbar_button_thumbs'] ? 'true' : 'false';
+		else
+		{
+			// When Fancybox 5
+			$imcger_fancybox_toolbar_middle  = $this->config['imcger_fancybox_toolbar_button_zoom'] && $this->config['imcger_fancybox_toolbar_button_rotate'] ? '"zoomIn","zoomOut","toggle1to1",' : '';
+			$imcger_fancybox_toolbar_middle .= $this->config['imcger_fancybox_toolbar_button_rotate'] ? '"rotateCCW","rotateCW",' : '';
+
+			$imcger_fancybox_toolbar  = $this->config['imcger_fancybox_toolbar_button_zoom'] && !$this->config['imcger_fancybox_toolbar_button_rotate'] ? '"zoomIn","zoomOut",' : '';
+			$imcger_fancybox_toolbar .= $this->config['imcger_fancybox_toolbar_button_slshow'] ? '"slideshow",' : '';
+			$imcger_fancybox_toolbar .= $this->config['imcger_fancybox_toolbar_button_fullscr'] ? '"fullscreen",' : '';
+			$imcger_fancybox_toolbar .= $this->config['imcger_fancybox_toolbar_button_download'] ? '"download",' : '';
+			$imcger_fancybox_toolbar .= $this->config['imcger_fancybox_toolbar_button_thumbs'] ? '"thumbs",' : '';
+			$imcger_fancybox_thumbs   = (bool) $this->config['imcger_fancybox_toolbar_button_thumbs'] ? 'classic' : 'false';
+
+		}
 
 		$this->template->assign_vars([
 			'S_IMCGER_FANCYBOX_VERSION'			=> $imcger_fancybox_version,
 			'IMCGER_FANCYBOX_IMAGE_BORDERWIDTH'	=> $imcger_fancybox_image_borderwidth,
 			'IMCGER_FANCYBOX_IMAGE_BORDERCOLOR'	=> $imcger_fancybox_image_bordercolor,
+			'IMCGER_FANCYBOX_TOOLBAR_MIDDLE'	=> $imcger_fancybox_toolbar_middle,
 			'IMCGER_FANCYBOX_TOOLBAR'			=> $imcger_fancybox_toolbar,
 			'IMCGER_FANCYBOX_THUMBS'			=> $imcger_fancybox_thumbs,
 			'IMCGER_FANCYBOX_TRANSITIONEFFECT'	=> $imcger_fancybox_transitionEffect,

@@ -1,38 +1,51 @@
 # phpBB-Fancybox
 
 ## Description
-
-This phpBB extension adds the fancybox attribute to all images in the posts. 
-The attached image files get the alternate text of the image as caption. With the other images, the link is displayed.
-It will turn on a fancybox for displaying the large image of thumbnails.  It defaults as a gallery showing all the attached images on the page. [Fancybox 3](https://fancyapps.com/fancybox)  
+This phpBB extension adds the image viewer Fancybox 3, 4 or 5 to your forum. It adds Fancybox attribute to all images in the posts. 
+The attached image files get the alternate text or the file comment as caption. For other external images, the link is displayed.
+It displays all attached images on the page as one gallery. Fancybox v3 is part of this package. It is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
+[Fancybox ](https://fancyapps.com/fancybox)  
 
 ## Requirements
 - php 5.4.7 or higher
 - phpBB 3.2.0 or higher
-- Fancybox v3.5.7 or Fancybox v4.0
+- Fancybox v3.5.7 or higher
 
 ## Installation
-
 Copy the extension to `phpBB3/ext/imcger/fancybox`
 
 Fancybox v3 is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) license for all open source applications.
-A commercial license is required for all commercial applications (including sites, themes and apps you plan to sell).
+A commercial license is required for all commercial applications.
 
-If you use Fancybox v4 you need a Fancyapps license. More infos [Fancyapps](https://fancyapps.com).
+If you use Fancybox v4 or v5 you need a Fancyapps license. More infos [Fancyapps](https://fancyapps.com).
 Buy a license and  copy the `fancybox.css` and `fancybox.umd.js` to `phpBB3/ext/imcger/fancybox/styles/all/template/fancybox`.
 
 Go to "ACP" > "Customise" > "Extensions Manager" and enable the "Fancybox" extension.
 
 ## Importent
-
-When you use the extension `phpBB-External-Links` please update it to version v1.2.2 or higher.
+When you use the extension "External Links" (`imcger/externallinks`) please update it to version v1.2.2 or higher.
 
 ## Settings
-
 From the ACP, you can customize the toolbar and the transition effect during image change.
 Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 
+## Compatible with
+- phpBB.de \- External Image as Link (`phpbbde/externalimgaslink`)
+- External Link In New Window (`martin/externallinkinnewwindow`)
+- External Links Open in New Window (`rmcgirr83/elonw`)
+- External Links (`imcger/externallinks`)
+
 ## Changelog
+
+### v1.3.0 (21-03-2023)
+- ACP added controller
+- ACP changed from radio button to toggel
+- ACP revised Twig code
+- Minore code change
+- Added check system requirements
+- Added support for `External Links Open in New Window`
+- Added support for `Fancybox 5`
+- Removed deprecated method for user language
 
 ### v1.2.5 (07-10-2022)
 - Code change
@@ -85,6 +98,6 @@ Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 Is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html) license for all open source applications.
 A commercial license is required for commercial use. [Fancybox 3](https://fancyapps.com/fancybox)
 
-**Fancybox v4** 
+**Fancybox v4 or higher** 
 You need a Fancybox license for none commercial use and commercial use.
 [Fancyapps](https://fancyapps.com)

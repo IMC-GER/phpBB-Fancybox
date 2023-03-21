@@ -15,6 +15,6 @@ Go to "ACP" > "Customise" > "Extensions Manager" and enable the "Fancybox" exten
 Is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0) license for all open source applications.
 A commercial license is required for commercial use.
 
-**Fancybox v4** 
+**Fancybox v4 or higher** 
 You need a Fancybox license for none commercial use and commercial use.
 [Fancyapps](https://fancyapps.com)

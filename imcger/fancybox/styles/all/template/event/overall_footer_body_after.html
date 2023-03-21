@@ -1,12 +1,12 @@
 {% if S_IMCGER_FANCYBOX_VERSION == 3 %}
-	{% INCLUDECSS '@imcger_fancybox/fancybox/jquery.fancybox.min.css' %}	
+	{% INCLUDECSS '@imcger_fancybox/fancybox/jquery.fancybox.min.css' %}
 	{% INCLUDEJS '@imcger_fancybox/fancybox/jquery.fancybox.min.js' %}
 
 	<script>
 		$('[data-fancybox]').fancybox({
 			toolbar: "auto",
-			buttons: [{{ IMCGER_FANCYBOX_TOOLBAR }}"close"], 
-			transitionEffect: "{{ IMCGER_FANCYBOX_TRANSITIONEFFECT }}",	
+			buttons: [{{ IMCGER_FANCYBOX_TOOLBAR }}"close"],
+			transitionEffect: "{{ IMCGER_FANCYBOX_TRANSITIONEFFECT }}",
 			loop : true,
 			protect: true,
 			lang: "{{ IMCGER_FANCYBOX_LANGUAGE }}",
@@ -45,7 +45,7 @@
 			Image: {
 				zoom: false,
 				wheel: "slide",
-			},			
+			},
 			l10n: {
 				CLOSE: "{{ lang('FANCYBOX_CLOSE')|e('js') }}",
 				NEXT: "{{ lang('FANCYBOX_NEXT')|e('js') }}",
@@ -58,6 +58,61 @@
 				TOGGLE_SLIDESHOW: "{{ lang('FANCYBOX_TOGGLE_SLIDESHOW')|e('js') }}",
 				TOGGLE_FULLSCREEN: "{{ lang('FANCYBOX_TOGGLE_FULLSCREEN')|e('js') }}",
 				DOWNLOAD: "{{ lang('FANCYBOX_DOWNLOAD')|e('js') }}",
+			},
+		});
+	</script>
+{% endif %}
+
+{% if S_IMCGER_FANCYBOX_VERSION == 5 %}
+	{% INCLUDECSS '@imcger_fancybox/fancybox/fancybox.css' %}
+	{% INCLUDEJS '@imcger_fancybox/fancybox/fancybox.umd.js' %}
+
+	<script>
+		Fancybox.bind('[data-fancybox]', {
+			hideScrollbar: false,
+			Images: {
+				Panzoom: {
+					maxScale: 3,
+				},
+			},
+			Carousel: {
+				//	"crossfade" | "fade" | "slide" | "classic" | false
+				transition: "{{ IMCGER_FANCYBOX_TRANSITIONEFFECT }}",
+			},
+			Thumbs: {
+			//	"modern" | "classic" | false
+				type: "{{ IMCGER_FANCYBOX_THUMBS }}",
+			},
+			Toolbar: {
+				// "prev" | "infobar" | "next" | "zoomIn" | "zoomOut" | "toggle1to1"
+				// "rotateCCW" | "rotateCW" | "flipX" | "flipY" | "fitX" | "fitY" | "iterateZoom"
+				// "slideshow" | "fullscreen" | "download" | "thumbs" | "close"
+				display: {
+					left: ["infobar"],
+					middle: [{{ IMCGER_FANCYBOX_TOOLBAR_MIDDLE }}],
+					right: [{{ IMCGER_FANCYBOX_TOOLBAR }} "close", ],
+				},
+			},
+			l10n: {
+				CLOSE: "{{ lang('FANCYBOX_CLOSE')|e('js') }}",
+				NEXT: "{{ lang('FANCYBOX_NEXT')|e('js') }}",
+				PREV: "{{ lang('FANCYBOX_PREV')|e('js') }}",
+				MODAL: "{{ lang('FANCYBOX_MODAL')|e('js') }}",
+				ERROR: "{{ lang('FANCYBOX_ERROR')|e('js') }}",
+				IMAGE_ERROR: "{{ lang('FANCYBOX_IMAGE_ERROR')|e('js') }}",
+				TOGGLEZOOM: "{{ lang('FANCYBOX_TOGGLE_ZOOM')|e('js') }}",
+				TOGGLE_ZOOM: "{{ lang('FANCYBOX_TOGGLE_ZOOM')|e('js') }}",
+				TOGGLE_THUMBS: "{{ lang('FANCYBOX_TOGGLE_THUMBS')|e('js') }}",
+				TOGGLE_SLIDESHOW: "{{ lang('FANCYBOX_TOGGLE_SLIDESHOW')|e('js') }}",
+				TOGGLE_FULLSCREEN: "{{ lang('FANCYBOX_TOGGLE_FULLSCREEN')|e('js') }}",
+				DOWNLOAD: "{{ lang('FANCYBOX_DOWNLOAD')|e('js') }}",
+				ROTATECCW: "{{ lang('FANCYBOX_ROTATECCW')|e('js') }}",
+				ROTATECW: "{{ lang('FANCYBOX_ROTATECW')|e('js') }}",
+				ITERATEZOOM: "{{ lang('FANCYBOX_ITERATEZOOM')|e('js') }}",
+				TOGGLE1TO1: "{{ lang('FANCYBOX_TOGGLE1TO1')|e('js') }}",
+				TOGGLEFS: "{{ lang('FANCYBOX_TOGGLEFS')|e('js') }}",
+				ZOOMIN: "{{ lang('FANCYBOX_ZOOMIN')|e('js') }}",
+				ZOOMOUT: "{{ lang('FANCYBOX_ZOOMOUT')|e('js') }}",
 			},
 		});
 	</script>

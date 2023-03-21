@@ -9,19 +9,24 @@
 	<fieldset>
 		<legend>{{ lang('FANCYBOX_VERSION') }}</legend>
 		<dl>
-			<dt><label for="imcger_fancybox_version_3">{{ lang('FANCYBOX_VERSION') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_VERSION_DESC') }}</span></dt>
+			<dt><label for="imcger_fancybox_version_3">{{ lang('FANCYBOX_VERSION') ~ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_VERSION_DESC') }}</span></dt>
 			<dd>
 				{% if IMCGER_FANCYBOX_IS_VERSION_3 %}
-					<label><input onclick="setFancyboxVersion(3)" type="radio" class="radio" id="imcger_fancybox_version_3" name="imcger_fancybox_version" value='3' {% if IMCGER_FANCYBOX_VERSION == 3 && IMCGER_FANCYBOX_IS_VERSION_3 %} checked="checked"{% endif %} />
-					{{ lang('FANCYBOX_VERSION') }}&nbsp;{IMCGER_FANCYBOX_IS_VERSION_3}</label>
+					<label><input onclick="imcgerFancybox.setVersion(3)" type="radio" class="radio" id="imcger_fancybox_version_3" name="imcger_fancybox_version" value='3' {{ IMCGER_FANCYBOX_VERSION == 3 && IMCGER_FANCYBOX_IS_VERSION_3 ? "checked" }}>
+					{{ lang('FANCYBOX_VERSION') }}&nbsp;{{ IMCGER_FANCYBOX_IS_VERSION_3 }}</label>
 				{% endif %}
-				
+
 				{% if IMCGER_FANCYBOX_IS_VERSION_4 %}
-					<label><input onclick="setFancyboxVersion(4)" type="radio" class="radio" id="imcger_fancybox_version_4" name="imcger_fancybox_version" value="4" {% if IMCGER_FANCYBOX_VERSION == 4 && IMCGER_FANCYBOX_IS_VERSION_4 %} checked="checked"{% endif %} />
-					{{ lang('FANCYBOX_VERSION') }}&nbsp;{IMCGER_FANCYBOX_IS_VERSION_4}</label>
+					<label><input onclick="imcgerFancybox.setVersion(4)" type="radio" class="radio" id="imcger_fancybox_version_4" name="imcger_fancybox_version" value="4" {{ IMCGER_FANCYBOX_VERSION == 4 && IMCGER_FANCYBOX_IS_VERSION_4 ? "checked" }}>
+					{{ lang('FANCYBOX_VERSION') }}&nbsp;{{ IMCGER_FANCYBOX_IS_VERSION_4 }}</label>
 				{% endif %}
-				
-				{% if !IMCGER_FANCYBOX_IS_VERSION_3 && !IMCGER_FANCYBOX_IS_VERSION_4 %}
+
+				{% if IMCGER_FANCYBOX_IS_VERSION_5 %}
+					<label><input onclick="imcgerFancybox.setVersion(5)" type="radio" class="radio" id="imcger_fancybox_version_5" name="imcger_fancybox_version" value="5" {{ IMCGER_FANCYBOX_VERSION == 5 && IMCGER_FANCYBOX_IS_VERSION_5 ? "checked" }}>
+					{{ lang('FANCYBOX_VERSION') }}&nbsp;{{ IMCGER_FANCYBOX_IS_VERSION_5 }}</label>
+				{% endif %}
+
+				{% if !IMCGER_FANCYBOX_IS_VERSION_3 && !IMCGER_FANCYBOX_IS_VERSION_4 && !IMCGER_FANCYBOX_IS_VERSION_5 %}
 					{{ lang('FANCYBOX_VERSION_NONE') }}
 				{% endif %}
 			</dd>
@@ -31,10 +36,10 @@
 	<fieldset>
 		<legend>{{ lang('FANCYBOX_SETTINGS_STYLE') }}</legend>
 		<dl>
-			<dt><label for="imcger_fancybox_image_borderwidth">{{ lang('FANCYBOX_IMAGES_STYLE') ~ lang('COLON') }}</label><br /><span>{{ lang('FANCYBOX_IMAGES_STYLE_DESC') }}</span></dt>
+			<dt><label for="imcger_fancybox_image_borderwidth">{{ lang('FANCYBOX_IMAGES_STYLE') ~ lang('COLON') }}</label><br ><span>{{ lang('FANCYBOX_IMAGES_STYLE_DESC') }}</span></dt>
 			<dd>
-				<input id="imcger_fancybox_image_borderwidth" name="imcger_fancybox_image_borderwidth" type="number" value="{{ IMCGER_FANCYBOX_IMAGES_BORDERWIDTH }}" size="4" min="0" max="100" style="width: 75px;"/> px<br>
-				<input id="imcger_fancybox_image_bordercolor" name="imcger_fancybox_image_bordercolor" type="text" value="{{ IMCGER_FANCYBOX_IMAGES_BORDERCOLOR }}" size="6" maxlength="6" {% if IMCGER_FANCYBOX_IMAGES_BORDERCOLOR %}style="border-right:20px solid #{{ IMCGER_FANCYBOX_IMAGES_BORDERCOLOR }}"{% endif %} />
+				<input id="imcger_fancybox_image_borderwidth" name="imcger_fancybox_image_borderwidth" type="number" value="{{ IMCGER_FANCYBOX_IMAGES_BORDERWIDTH }}" size="4" min="0" max="100" style="width: 75px;"> px<br>
+				<input id="imcger_fancybox_image_bordercolor" name="imcger_fancybox_image_bordercolor" type="text" value="{{ IMCGER_FANCYBOX_IMAGES_BORDERCOLOR }}" size="6" maxlength="6" {% if IMCGER_FANCYBOX_IMAGES_BORDERCOLOR %}style="border-right:20px solid #{{ IMCGER_FANCYBOX_IMAGES_BORDERCOLOR }}"{% endif %} >
 			</dd>
 		</dl>
 	</fieldset>
@@ -42,128 +47,97 @@
 	<fieldset>
 		<legend>{{ lang('FANCYBOX_SETTINGS_TOOLBAR') }}</legend>
 		<dl>
-			<dt><label for="imcger_fancybox_toolbar_button_zoom">{{ lang('FANCYBOX_TOOLBAR_BUTTON_ZOOM') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_ZOOM_DESC') }}</span></dt>
+			<dt><label for="imcger_fancybox_toolbar_button_zoom">{{ lang('FANCYBOX_TOOLBAR_BUTTON_ZOOM') ~ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_ZOOM_DESC') }}</span></dt>
 			<dd>
-				<label><input type="radio" class="radio" id="imcger_fancybox_toolbar_button_zoom" name="imcger_fancybox_toolbar_button_zoom" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_ZOOM %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="imcger_fancybox_toolbar_button_zoom" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_ZOOM %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+				{{ _self.switch('imcger_fancybox_toolbar_button_zoom', IMCGER_FANCYBOX_TOOLBAR_BUTTON_ZOOM) }}
+			</dd>
+		</dl>
+		<dl id="FancyboxToolbarButtonRotate">
+			<dt><label for="imcger_fancybox_toolbar_button_rotate">{{ lang('FANCYBOX_TOOLBAR_BUTTON_ROTATE') ~ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_ROTATE_DESC') }}</span></dt>
+			<dd>
+				{{ _self.switch('imcger_fancybox_toolbar_button_rotate', IMCGER_FANCYBOX_TOOLBAR_BUTTON_ROTATE) }}
 			</dd>
 		</dl>
 		<dl id="FancyboxToolbarButtonShare">
-			<dt><label for="imcger_fancybox_toolbar_button_share">{{ lang('FANCYBOX_TOOLBAR_BUTTON_SHARE') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_SHARE_DESC') }}</span></dt>
+			<dt><label for="imcger_fancybox_toolbar_button_share">{{ lang('FANCYBOX_TOOLBAR_BUTTON_SHARE') ~ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_SHARE_DESC') }}</span></dt>
 			<dd>
-				<label><input type="radio" class="radio" id="imcger_fancybox_toolbar_button_share" name="imcger_fancybox_toolbar_button_share" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_SHARE %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="imcger_fancybox_toolbar_button_share" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_SHARE %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+				{{ _self.switch('imcger_fancybox_toolbar_button_share', IMCGER_FANCYBOX_TOOLBAR_BUTTON_SHARE) }}
 			</dd>
 		</dl>
 		<dl>
-			<dt><label for="imcger_fancybox_toolbar_button_slshow">{{ lang('FANCYBOX_TOOLBAR_BUTTON_SLIDESHOW') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_SLIDESHOW_DESC') }}</span></dt>
+			<dt><label for="imcger_fancybox_toolbar_button_slshow">{{ lang('FANCYBOX_TOOLBAR_BUTTON_SLIDESHOW') ~ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_SLIDESHOW_DESC') }}</span></dt>
 			<dd>
-				<label><input type="radio" class="radio" id="imcger_fancybox_toolbar_button_slshow" name="imcger_fancybox_toolbar_button_slshow" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_SLSHOW %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="imcger_fancybox_toolbar_button_slshow" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_SLSHOW %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+				{{ _self.switch('imcger_fancybox_toolbar_button_slshow', IMCGER_FANCYBOX_TOOLBAR_BUTTON_SLSHOW) }}
 			</dd>
 		</dl>
 		<dl>
-			<dt><label for="imcger_fancybox_toolbar_button_fullscr">{{ lang('FANCYBOX_TOOLBAR_BUTTON_FULLSCREEN') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_FULLSCREEN_DESC') }}</span></dt>
+			<dt><label for="imcger_fancybox_toolbar_button_fullscr">{{ lang('FANCYBOX_TOOLBAR_BUTTON_FULLSCREEN') ~ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_FULLSCREEN_DESC') }}</span></dt>
 			<dd>
-				<label><input type="radio" class="radio" id="imcger_fancybox_toolbar_button_fullscr" name="imcger_fancybox_toolbar_button_fullscr" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_FULLSCR %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="imcger_fancybox_toolbar_button_fullscr" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_FULLSCR %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+				{{ _self.switch('imcger_fancybox_toolbar_button_fullscr', IMCGER_FANCYBOX_TOOLBAR_BUTTON_FULLSCR) }}
 			</dd>
 		</dl>
 		<dl>
-			<dt><label for="imcger_fancybox_toolbar_button_download">{{ lang('FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD_DESC') }}</span></dt>
+			<dt><label for="imcger_fancybox_toolbar_button_download">{{ lang('FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD') ~ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD_DESC') }}</span></dt>
 			<dd>
-				<label><input type="radio" class="radio" id="imcger_fancybox_toolbar_button_download" name="imcger_fancybox_toolbar_button_download" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="imcger_fancybox_toolbar_button_download" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+				{{ _self.switch('imcger_fancybox_toolbar_button_download', IMCGER_FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD) }}
 			</dd>
 		</dl>
 		<dl>
-			<dt><label for="imcger_fancybox_toolbar_button_thumbs">{{ lang('FANCYBOX_TOOLBAR_BUTTON_THUMBS') }} {{ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_THUMBS_DESC') }}</span></dt>
+			<dt><label for="imcger_fancybox_toolbar_button_thumbs">{{ lang('FANCYBOX_TOOLBAR_BUTTON_THUMBS') ~ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_THUMBS_DESC') }}</span></dt>
 			<dd>
-				<label><input type="radio" class="radio" id="imcger_fancybox_toolbar_button_thumbs" name="imcger_fancybox_toolbar_button_thumbs" value='1'{% if IMCGER_FANCYBOX_TOOLBAR_BUTTON_THUMBS %} checked="checked"{% endif %} /> {{ lang('YES') }}</label>
-				<label><input type="radio" class="radio" name="imcger_fancybox_toolbar_button_thumbs" value='0'{% if not IMCGER_FANCYBOX_TOOLBAR_BUTTON_THUMBS %} checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+				{{ _self.switch('imcger_fancybox_toolbar_button_thumbs', IMCGER_FANCYBOX_TOOLBAR_BUTTON_THUMBS) }}
 			</dd>
 		</dl>
 	</fieldset>
-	
+
 	<fieldset id="FancyboxSettingsEffect">
 		<legend>{{ lang('FANCYBOX_SETTINGS_EFFECT') }}</legend>
 		<dl>
-			<dt><label for="imcger_fancybox_transitionEffect">{{ lang('FANCYBOX_TRANSITIONEFFECT') }} {{ lang('COLON') }}</label><br /><span>{{ lang('FANCYBOX_TRANSITIONEFFECT_DESC') }}</span></dt>
+			<dt><label for="imcger_fancybox_transitionEffect">{{ lang('FANCYBOX_TRANSITIONEFFECT') ~ lang('COLON') }}</label><br ><span>{{ lang('FANCYBOX_TRANSITIONEFFECT_DESC') }}</span></dt>
 			<dd>
 				<select id="imcger_fancybox_transitionEffect" name="imcger_fancybox_transitionEffect">
-					<option value="false"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'false' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_FALSE') }}</option>
-					<option value="fade"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'fade' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_FADE') }}</option>
-					<option value="slide"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'slide' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_SLIDE') }}</option>
-					<option value="circular"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'circular' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_CIRCULAR') }}</option>
-					<option value="tube"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'tube' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_TUBE') }}</option>
-					<option value="zoom-in-out"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'zoom-in-out' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_ZOOM-IN-OUT') }}</option>
-					<option value="rotate"{% if IMCGER_FANCYBOX_TRANSITIONEFFECT == 'rotate' %} selected="selected"{% endif %}>{{ lang('FANCYBOX_TRANSITIONEFFECT_ROTATE') }}</option>
+					<option class="fancybox5" value="crossfade"{{ IMCGER_FANCYBOX_TRANSITIONEFFECT == 'crossfade' ? ' selected' }}>{{ lang('FANCYBOX_TRANSITIONEFFECT_CROSSFADE') }}</option>
+					<option class="fancybox3 fancybox5" value="fade"{{ IMCGER_FANCYBOX_TRANSITIONEFFECT == 'fade' ? ' selected' }}>{{ lang('FANCYBOX_TRANSITIONEFFECT_FADE') }}</option>
+					<option class="fancybox3 fancybox5" value="slide"{{ IMCGER_FANCYBOX_TRANSITIONEFFECT == 'slide' ? ' selected' }}>{{ lang('FANCYBOX_TRANSITIONEFFECT_SLIDE') }}</option>
+					<option class="fancybox3" value="circular"{{ IMCGER_FANCYBOX_TRANSITIONEFFECT == 'circular' ? ' selected' }}>{{ lang('FANCYBOX_TRANSITIONEFFECT_CIRCULAR') }}</option>
+					<option class="fancybox3" value="tube"{{ IMCGER_FANCYBOX_TRANSITIONEFFECT == 'tube' ? ' selected' }}>{{ lang('FANCYBOX_TRANSITIONEFFECT_TUBE') }}</option>
+					<option class="fancybox3" value="zoom-in-out"{{ IMCGER_FANCYBOX_TRANSITIONEFFECT == 'zoom-in-out' ? ' selected' }}>{{ lang('FANCYBOX_TRANSITIONEFFECT_ZOOM-IN-OUT') }}</option>
+					<option class="fancybox3" value="rotate"{{ IMCGER_FANCYBOX_TRANSITIONEFFECT == 'rotate' ? ' selected' }}>{{ lang('FANCYBOX_TRANSITIONEFFECT_ROTATE') }}</option>
+					<option class="fancybox5" value="classic"{{ IMCGER_FANCYBOX_TRANSITIONEFFECT == 'classic' ? ' selected' }}>{{ lang('FANCYBOX_TRANSITIONEFFECT_CLASSIC') }}</option>
 				</select>
 			</dd>
 		</dl>
 	</fieldset>
-	
-	<fieldset class="submit-buttons">
-		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" {% if !IMCGER_FANCYBOX_IS_VERSION_3 && !IMCGER_FANCYBOX_IS_VERSION_4 %} disabled {% endif %} />
-		{S_FORM_TOKEN}
+
+	<fieldset>
+		<legend>{{ lang('ACP_SUBMIT_CHANGES') }}</legend>
+
+		<p class="submit-buttons">
+			<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" {{ !IMCGER_FANCYBOX_IS_VERSION_3 && !IMCGER_FANCYBOX_IS_VERSION_4 && !IMCGER_FANCYBOX_IS_VERSION_5 ? 'disabled' }} >
+			<input class="button2" type="reset"  id="reset" name="reset" value="{{ lang('RESET') }}">
+		</p>
 	</fieldset>
+
+	{{ S_FORM_TOKEN }}
 </form>
 
-	{% if not definition.INCLUDED_COLPICKJS %}
-		{% INCLUDEJS '@imcger_fancybox/colpick/colpick.js' %}
-		{% INCLUDECSS '@imcger_fancybox/colpick/colpick.css' %}
-		{% DEFINE INCLUDED_COLPICKJS = true %}
-	{% endif %}
-
-<script>
-	/**
-		Function borrowed from Board Announcements extension for phpBB
-		
-		@copyright (c) 2014 phpBB Limited <https://www.phpbb.com>
-		@license GNU General Public License, version 2 (GPL-2.0)		
-	*/
-	jQuery(function($) {
-		var bgcolor = '{{ IMCGER_FANCYBOX_IMAGES_BORDERCOLOR|e('js') }}';
-		$('#imcger_fancybox_image_bordercolor').colpick({
-			layout: 'hex',
-			submit: 0,
-			onBeforeShow: function() {
-				if (bgcolor !== '') {
-					$(this).colpickSetColor(bgcolor);
-					bgcolor = '';
-				}
-			},
-			onChange: function(hsb, hex, rgb, el, bySetColor) {
-				$(el).css({
-					'border-right-color': '#' + hex,
-					'border-right-width': '20px',
-					'border-right-type': 'solid'
-				});
-				if (!bySetColor) {
-					$(el).val(hex);
-				}
-			}
-		}).keyup(function() {
-			$(this).colpickSetColor(this.value || 'ffffff');
-		});
-	});
-
-	/* Einstellungs Dialog für Fancybox Version anpassen */
-	function setFancyboxVersion(FancyboxVersion) {
-		if (FancyboxVersion > 3) {
-			document.getElementById("FancyboxSettingsEffect").style.display = "none";
-			document.getElementById("FancyboxToolbarButtonShare").style.display = "none";
-		} else {
-			document.getElementById("FancyboxSettingsEffect").style.display = "block";
-			document.getElementById("FancyboxToolbarButtonShare").style.display = "block";
-		}
-	}
-
-	/* Beim Laden der Seite den Einstellungs Dialog für Fancybox Version anpassen. */
-	document.addEventListener('DOMContentLoaded', function () {
-		let radioButton = document.querySelector('input[name="imcger_fancybox_version"]:checked').value;
-		setFancyboxVersion(radioButton);
-	});
-</script>
+<p class="imcger-copyright">
+	{{ EXT_LINK_TITLE }} v{{ EXT_LINK_EXT_VER }} &copy; IMC-Ger<br>
+	{{ lang('ACP_IMCGER_LANG_DESC') }} v{{ lang('ACP_IMCGER_LANG_EXT_VER') }} &bull; {{ lang('ACP_IMCGER_LANG_AUTHOR') }}
+</p>
 
 {% include 'overall_footer.html' %}
+
+{% if not INCLUDED_COLPICKJS %}
+	{% INCLUDEJS '@imcger_fancybox/colpick/colpick.js' %}
+	{% INCLUDECSS '@imcger_fancybox/colpick/colpick.css' %}
+	{% set INCLUDED_COLPICKJS = true %}
+{% endif %}
+
+{% INCLUDEJS '@imcger_fancybox/acp_fancybox.js' %}
+{% INCLUDECSS '@imcger_fancybox/acp_fancybox.css' %}
+{% INCLUDECSS '@imcger_fancybox/acp_toggle.css' %}
+
+{% macro switch(name, checked = false) -%}
+	<input type="checkbox" class="toggle" name="{{ name }}" value="1"{{ checked ? ' checked' }}>
+{%- endmacro %}
