@@ -4,7 +4,7 @@
 This phpBB extension adds the image viewer Fancybox 3, 4 or 5 to your forum. It adds Fancybox attribute to all images in the posts. 
 The attached image files get the alternate text or the file comment as caption. For other external images, the link is displayed.
 It displays all attached images on the page as one gallery. Fancybox v3 is part of this package. It is licensed under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.en.html).
-[Fancybox ](https://fancyapps.com/fancybox)  
+[Fancybox](https://fancyapps.com/fancybox)  
 
 ## Requirements
 - php 5.4.7 or higher
@@ -36,6 +36,9 @@ Go to "ACP" > "Extensions" > "Fancybox settings" and customize "Fancybox".
 - External Links (`imcger/externallinks`)
 
 ## Changelog
+
+### v1.3.1 (30-07-2023)
+- Added option to integrate links
 
 ### v1.3.0 (21-03-2023)
 - ACP added controller

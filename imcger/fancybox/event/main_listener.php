@@ -79,6 +79,7 @@ class main_listener implements EventSubscriberInterface
 			'core.page_header'								=> 'show_fancybox_var',
 			'core.parse_attachments_modify_template_data'	=> 'modify_template_data',
 			'core.text_formatter_s9e_configure_after'		=> 'configure_textformatter',
+			'core.text_formatter_s9e_renderer_setup'		=> 'set_textformatter_parameters',
 		);
 	}
 
@@ -181,8 +182,8 @@ class main_listener implements EventSubscriberInterface
 		);
 		$link_url_template = '<xsl:choose>' .
 								/* Check if it an image */
-								'<xsl:when test="contains(@url, \'.jpg\') or contains(@url, \'.jpeg\') or contains(@url, \'.gif\') or contains(@url, \'.png\') or contains(@url, \'.webp\') or contains(@url, \'.svg\') or ' .
-												'contains(@url, \'.JPG\') or contains(@url, \'.JPEG\') or contains(@url, \'.GIF\') or contains(@url, \'.PNG\') or contains(@url, \'.WEBP\') or contains(@url, \'.SVG\')">' .
+								'<xsl:when test="(contains(@url, \'.jpg\') or contains(@url, \'.jpeg\') or contains(@url, \'.gif\') or contains(@url, \'.png\') or contains(@url, \'.webp\') or contains(@url, \'.svg\') or ' .
+												 'contains(@url, \'.JPG\') or contains(@url, \'.JPEG\') or contains(@url, \'.GIF\') or contains(@url, \'.PNG\') or contains(@url, \'.WEBP\') or contains(@url, \'.SVG\')) and $S_IMCGER_SHOW_WITH_LINK">' .
 									$link_url_template .
 								'</xsl:when>' .
 								/* Link standard display */
@@ -194,6 +195,23 @@ class main_listener implements EventSubscriberInterface
 		$configurator->tags['IMG']->template = $link_img_template;
 		$configurator->tags['URL']->template = $link_url_template;
 
+	}
+
+	/**
+	 * Sets parameters for the s9e TextFormatter, which will be used to select
+	 * the appropriate template for the URL and IMG tag.
+	 *
+	 * @param	object		$event	The event object
+	 * @return	null
+	 * @access	public
+	 */
+	public function set_textformatter_parameters($event)
+	{
+		/** @var \s9e\TextFormatter\Renderer $renderer */
+		$renderer = $event['renderer']->get_renderer();
+
+		// Show image link in fancybox
+		$renderer->setParameter('S_IMCGER_SHOW_WITH_LINK', (bool) $this->config['imcger_fancybox_show_with_link']);
 	}
 
 	public function show_fancybox_var()

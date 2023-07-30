@@ -140,6 +140,7 @@ class admin_controller
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_FULLSCR'	=> $this->config['imcger_fancybox_toolbar_button_fullscr'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_DOWNLOAD'	=> $this->config['imcger_fancybox_toolbar_button_download'],
 			'IMCGER_FANCYBOX_TOOLBAR_BUTTON_THUMBS'		=> $this->config['imcger_fancybox_toolbar_button_thumbs'],
+			'IMCGER_FANCYBOX_SHOW_WITH_LINK'			=> $this->config['imcger_fancybox_show_with_link'],
 		]);
 	}
 
@@ -162,6 +163,7 @@ class admin_controller
 		$this->config->set('imcger_fancybox_toolbar_button_fullscr', $this->request->variable('imcger_fancybox_toolbar_button_fullscr', 0));
 		$this->config->set('imcger_fancybox_toolbar_button_download', $this->request->variable('imcger_fancybox_toolbar_button_download', 0));
 		$this->config->set('imcger_fancybox_toolbar_button_thumbs', $this->request->variable('imcger_fancybox_toolbar_button_thumbs', 0));
+		$this->config->set('imcger_fancybox_show_with_link', $this->request->variable('imcger_fancybox_show_with_link', 0));
 	}
 
 	/**

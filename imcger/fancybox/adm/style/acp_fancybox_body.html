@@ -45,6 +45,16 @@
 	</fieldset>
 
 	<fieldset>
+		<legend>{{ lang('FANCYBOX_SETTINGS') }}</legend>
+		<dl>
+			<dt><label for="imcger_fancybox_show_with_link">{{ lang('FANCYBOX_SHOW_WITH_LINK') ~ lang('COLON') }}</label><br ><span>{{ lang('FANCYBOX_SHOW_WITH_LINK_DESC') }}</span></dt>
+			<dd>
+				{{ _self.switch('imcger_fancybox_show_with_link', IMCGER_FANCYBOX_SHOW_WITH_LINK) }}
+			</dd>
+		</dl>
+	</fieldset>
+
+	<fieldset>
 		<legend>{{ lang('FANCYBOX_SETTINGS_TOOLBAR') }}</legend>
 		<dl>
 			<dt><label for="imcger_fancybox_toolbar_button_zoom">{{ lang('FANCYBOX_TOOLBAR_BUTTON_ZOOM') ~ lang('COLON') }}</label><br><span>{{ lang('FANCYBOX_TOOLBAR_BUTTON_ZOOM_DESC') }}</span></dt>

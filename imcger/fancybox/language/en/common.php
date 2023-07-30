@@ -22,7 +22,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, [
 	// Language pack author
 	'ACP_IMCGER_LANG_DESC'	  => 'British English',
-	'ACP_IMCGER_LANG_EXT_VER' => '1.2.6',
+	'ACP_IMCGER_LANG_EXT_VER' => '1.3.1',
 	'ACP_IMCGER_LANG_AUTHOR'  => 'IMC-Ger',
 
 	// Discription
@@ -39,6 +39,11 @@ $lang = array_merge($lang, [
 	'FANCYBOX_SETTINGS_STYLE'		=> 'Settings Style',
 	'FANCYBOX_IMAGES_STYLE'			=> 'Picture frame',
 	'FANCYBOX_IMAGES_STYLE_DESC'	=> 'The width of the picture frame is specified in "px". If 0 is entered, no frame is displayed.<br>The color for the picture frame is specified as a 6-digit hex value.',
+
+	// Settings
+	'FANCYBOX_SETTINGS'				=> 'Settings',
+	'FANCYBOX_SHOW_WITH_LINK'		=> 'Integrate links',
+	'FANCYBOX_SHOW_WITH_LINK_DESC'	=> 'If this option is enabled, the images inserted as links will be displayed in the fancybox.',
 
 	// Toolbar settings
 	'FANCYBOX_SETTINGS_TOOLBAR'					=> 'Buttons appear in the top right corner.',
