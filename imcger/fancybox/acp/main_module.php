@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * Implements the image viewer Fancybox in phpBB.
  * An extension for the phpBB Forum Software package.
  *
@@ -16,11 +15,11 @@ namespace imcger\fancybox\acp;
  */
 class main_module
 {
-	public $page_title;
-	public $tpl_name;
-	public $u_action;
+	public string $page_title;
+	public string $tpl_name;
+	public string $u_action;
 
-	public function main($id, $mode)
+	public function main(string $id, string $mode): void
 	{
 		global $phpbb_container;
 

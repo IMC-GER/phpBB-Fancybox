@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * Implements the image viewer Fancybox in phpBB.
  * An extension for the phpBB Forum Software package.
  *
@@ -16,18 +15,18 @@ namespace imcger\fancybox\acp;
  */
 class main_info
 {
-	public function module()
+	public function module(): array
 	{
-		return array(
+		return [
 			'filename'	=> '\imcger\fancybox\acp\main_module',
 			'title'		=> 'ACP_FANCYBOX_TITLE',
-			'modes'		=> array(
-				'settings'	=> array(
+			'modes'		=> [
+				'settings'	=> [
 					'title'	=> 'ACP_FANCYBOX_SETTINGS',
 					'auth'	=> 'ext_imcger/fancybox && acl_a_board',
-					'cat'	=> array('ACP_FANCYBOX_TITLE'),
-				),
-			),
-		);
+					'cat'	=> ['ACP_FANCYBOX_TITLE'],
+				],
+			],
+		];
 	}
 }

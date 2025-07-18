@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * Implements the image viewer Fancybox in phpBB.
  * An extension for the phpBB Forum Software package.
  *
@@ -13,21 +12,21 @@ namespace imcger\fancybox\migrations;
 
 class up01_acp_module extends \phpbb\db\migration\migration
 {
-	public function effectively_installed()
+	public function effectively_installed(): bool
 	{
 		return isset($this->config['imcger_fancybox_image_borderwidth']);
 	}
 
-	public static function depends_on()
+	public static function depends_on(): array
 	{
-		return array('\imcger\fancybox\migrations\install_acp_module');
+		return ['\imcger\fancybox\migrations\install_acp_module'];
 	}
 
-	public function update_data()
+	public function update_data(): array
 	{
-		return array(
-			array('config.add', array('imcger_fancybox_image_borderwidth', 0)),
-			array('config.add', array('imcger_fancybox_image_bordercolor', 'ffffff')),
-		);
+		return [
+			['config.add', ['imcger_fancybox_image_borderwidth', 0]],
+			['config.add', ['imcger_fancybox_image_bordercolor', 'ffffff']],
+		];
 	}
 }

@@ -12,13 +12,14 @@
 			"role": "Developer"
 		}
 	],
-	"require": {
-		"php": ">=5.5"
+    "require": {
+        "php": ">=7.4,<8.5.0@dev",
+        "composer/installers": "~1.0"
 	},
 	"extra": {
 		"display-name": "Fancybox",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.2.0,<4.0.0@dev"
+			"phpbb/phpbb": ">=3.3.0,<4.0.0@dev"
 		},
 		"version-check": {
 			"host": "raw.githubusercontent.com",

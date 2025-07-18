@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * Implements the image viewer Fancybox in phpBB.
  * An extension for the phpBB Forum Software package.
  *
@@ -11,47 +10,18 @@
 
 namespace imcger\fancybox\event;
 
-/**
- * @ignore
- */
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-/**
- * Fancybox listener
- */
 class main_listener implements EventSubscriberInterface
 {
-	/** @var \phpbb\config\config */
-	protected $config;
+	protected object $config;
+	protected object $template;
+	protected object $user;
+	protected object $language;
+	protected object $db;
+	protected object $ext_manager;
+	protected bool $is_ext_links;
 
-	/** @var \phpbb\template\template */
-	protected $template;
-
-	/** @var \phpbb\user */
-	protected $user;
-
-	/** @var \phpbb\language\language */
-	protected $language;
-
-	/** @var \phpbb\db\driver\driver_interface */
-	protected $db;
-
-	/** @var \phpbb\extension\manager */
-	protected $ext_manager;
-
-	/** @var bool is_ext_links */
-	protected $is_ext_links;
-
-	/**
-	 * Constructor
-	 *
-	 * @param \phpbb\config\config				$config			Config object
-	 * @param \phpbb\template\template			$template		Template object
-	 * @param \phpbb\user						$user			User object
-	 * @param \phpbb\language\language			$language		language object
-	 * @param \phpbb\db\driver\driver_interface	$db				Driver interface object
-	 * @param \phpbb\extension\manager			$ext_manager	Extension manager object
-	 */
 	public function __construct
 	(
 		\phpbb\config\config $config,
@@ -73,17 +43,17 @@ class main_listener implements EventSubscriberInterface
 		$this->is_ext_links =  $this->ext_manager->is_enabled('imcger/externallinks');
 	}
 
-	public static function getSubscribedEvents()
+	public static function getSubscribedEvents(): array
 	{
-		return array(
+		return [
 			'core.page_header'								=> 'show_fancybox_var',
 			'core.parse_attachments_modify_template_data'	=> 'modify_template_data',
 			'core.text_formatter_s9e_configure_after'		=> 'configure_textformatter',
 			'core.text_formatter_s9e_renderer_setup'		=> 'set_textformatter_parameters',
-		);
+		];
 	}
 
-	public function modify_template_data($event)
+	public function modify_template_data(object $event): void
 	{
 		$block_array = $event['block_array'];
 
@@ -130,7 +100,7 @@ class main_listener implements EventSubscriberInterface
 		$event['block_array'] = $block_array;
 	}
 
-	public function configure_textformatter($event)
+	public function configure_textformatter(object $event): void
 	{
 		/* if "imcger/externallinks" aktive, do nothing */
 		if ($this->is_ext_links)
@@ -200,12 +170,8 @@ class main_listener implements EventSubscriberInterface
 	/**
 	 * Sets parameters for the s9e TextFormatter, which will be used to select
 	 * the appropriate template for the URL and IMG tag.
-	 *
-	 * @param	object		$event	The event object
-	 * @return	null
-	 * @access	public
 	 */
-	public function set_textformatter_parameters($event)
+	public function set_textformatter_parameters(object $event): void
 	{
 		/** @var \s9e\TextFormatter\Renderer $renderer */
 		$renderer = $event['renderer']->get_renderer();
@@ -214,10 +180,10 @@ class main_listener implements EventSubscriberInterface
 		$renderer->setParameter('S_IMCGER_SHOW_WITH_LINK', (bool) $this->config['imcger_fancybox_show_with_link']);
 	}
 
-	public function show_fancybox_var()
+	public function show_fancybox_var(): void
 	{
 		/* Add Fancybox language file */
-		$this->language->add_lang('fancybox_lang','imcger/fancybox');
+		$this->language->add_lang('fancybox_lang', 'imcger/fancybox');
 
 		$imcger_fancybox_version			= $this->config['imcger_fancybox_version'];
 		$imcger_fancybox_image_borderwidth	= $this->config['imcger_fancybox_image_borderwidth'];

@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * Implements the image viewer Fancybox in phpBB.
  * An extension for the phpBB Forum Software package.
  *
@@ -13,34 +12,13 @@ namespace imcger\fancybox\controller;
 
 class admin_controller
 {
-	/** @var config */
-	protected $config;
+	protected object $config;
+	protected object $template;
+	protected object $language;
+	protected object $request;
+	protected object $ext_manager;
+	protected string $u_action;
 
-	/** @var template */
-	protected $template;
-
-	/** @var language */
-	protected $language;
-
-	/** @var request */
-	protected $request;
-
-	/** @var \phpbb\extension\manager */
-	protected $ext_manager;
-
-	/** @var string Custom form action */
-	protected $u_action;
-
-	/**
-	 * Constructor
-	 *
-	 * @param config	$config
-	 * @param template	$template
-	 * @param language	$language
-	 * @param request	$request
-	 * @param \phpbb\extension\manager	$ext_manager
-	 *
-	 */
 	public function __construct(
 		\phpbb\config\config $config,
 		\phpbb\template\template $template,
@@ -56,13 +34,7 @@ class admin_controller
 		$this->ext_manager	= $ext_manager;
 	}
 
-	/**
-	 * Display the options a user can configure for this extension
-	 *
-	 * @return null
-	 * @access public
-	 */
-	public function display_options()
+	public function display_options(): void
 	{
 		// Add ACP lang file
 		$this->language->add_lang('common', 'imcger/fancybox');
@@ -146,11 +118,8 @@ class admin_controller
 
 	/**
 	 * Store the variable to the db
-	 *
-	 * @return null
-	 * @access protected
 	 */
-	protected function set_variable()
+	protected function set_variable(): void
 	{
 		$this->config->set('imcger_fancybox_version', $this->request->variable('imcger_fancybox_version', 0));
 		$this->config->set('imcger_fancybox_image_borderwidth', $this->request->variable('imcger_fancybox_image_borderwidth', 0));
@@ -168,12 +137,8 @@ class admin_controller
 
 	/**
 	 * Set page url
-	 *
-	 * @param string $u_action Custom form action
-	 * @return null
-	 * @access public
 	 */
-	public function set_page_url($u_action)
+	public function set_page_url(string $u_action): void
 	{
 		$this->u_action = $u_action;
 	}

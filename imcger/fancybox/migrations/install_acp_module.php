@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * Implements the image viewer Fancybox in phpBB.
  * An extension for the phpBB Forum Software package.
  *
@@ -13,17 +12,17 @@ namespace imcger\fancybox\migrations;
 
 class install_acp_module extends \phpbb\db\migration\migration
 {
-	public function effectively_installed()
+	public function effectively_installed(): bool
 	{
 		return isset($this->config['imcger_fancybox_version']);
 	}
 
-	public static function depends_on()
+	public static function depends_on(): array
 	{
-		return array('\phpbb\db\migration\data\v31x\v314');
+		return ['\phpbb\db\migration\data\v31x\v314'];
 	}
 
-	public function update_data()
+	public function update_data(): array
 	{
 		/*
 			Prüfen welche Fancybox Version installiert ist.
@@ -44,29 +43,29 @@ class install_acp_module extends \phpbb\db\migration\migration
 			$is_fancybox = 4;
 		}
 
-		return array(
-			array('config.add', array('imcger_fancybox_version', $is_fancybox)),
-			array('config.add', array('imcger_fancybox_toolbar_button_zoom', 1)),
-			array('config.add', array('imcger_fancybox_toolbar_button_share', 0)),
-			array('config.add', array('imcger_fancybox_toolbar_button_slshow', 0)),
-			array('config.add', array('imcger_fancybox_toolbar_button_fullscr', 1)),
-			array('config.add', array('imcger_fancybox_toolbar_button_download', 0)),
-			array('config.add', array('imcger_fancybox_toolbar_button_thumbs', 0)),
-			array('config.add', array('imcger_fancybox_transitionEffect', 'slide')),
+		return [
+			['config.add', ['imcger_fancybox_version', $is_fancybox]],
+			['config.add', ['imcger_fancybox_toolbar_button_zoom', 1]],
+			['config.add', ['imcger_fancybox_toolbar_button_share', 0]],
+			['config.add', ['imcger_fancybox_toolbar_button_slshow', 0]],
+			['config.add', ['imcger_fancybox_toolbar_button_fullscr', 1]],
+			['config.add', ['imcger_fancybox_toolbar_button_download', 0]],
+			['config.add', ['imcger_fancybox_toolbar_button_thumbs', 0]],
+			['config.add', ['imcger_fancybox_transitionEffect', 'slide']],
 
-			array('module.add', array(
+			['module.add', [
 				'acp',
 				'ACP_CAT_DOT_MODS',
 				'ACP_FANCYBOX_TITLE'
-			)),
-			array('module.add', array(
+			]],
+			['module.add', [
 				'acp',
 				'ACP_FANCYBOX_TITLE',
-				array(
+				[
 					'module_basename'	=> '\imcger\fancybox\acp\main_module',
-					'modes'				=> array('settings'),
-				),
-			)),
-		);
+					'modes'				=> ['settings'],
+				],
+			]],
+		];
 	}
 }

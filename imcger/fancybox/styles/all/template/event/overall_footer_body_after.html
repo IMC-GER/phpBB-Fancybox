@@ -1,3 +1,12 @@
+{#
+ * Implements the image viewer Fancybox in phpBB.
+ * An extension for the phpBB Forum Software package.
+ *
+ * @copyright (c) 2022, Thorsten Ahlers
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ #}
+
 {% if S_IMCGER_FANCYBOX_VERSION == 3 %}
 	{% INCLUDECSS '@imcger_fancybox/fancybox/jquery.fancybox.min.css' %}
 	{% INCLUDEJS '@imcger_fancybox/fancybox/jquery.fancybox.min.js' %}
@@ -115,6 +124,26 @@
 				ZOOMIN: "{{ lang('FANCYBOX_ZOOMIN')|e('js') }}",
 				ZOOMOUT: "{{ lang('FANCYBOX_ZOOMOUT')|e('js') }}",
 			},
+			on: {
+				reveal: (_fancybox, slide) => {
+					const doubleBorder = 10 * 2;
+
+					slide.contentEl.insertAdjacentHTML(
+						"beforeend",
+						`<div class="custom-fancybox-bg"></div>`
+					);
+
+					slide.customBG = slide.el.querySelector(".custom-fancybox-bg");
+
+					slide.panzoom.on("afterTransform", (panzoom) => {
+						const bgScale =
+							(panzoom.contentRect.width + doubleBorder) /
+							((panzoom.contentRect.fitWidth + doubleBorder) * panzoom.scale);
+
+					slide.customBG.style.scale = bgScale;
+					});
+				}
+			}
 		});
 	</script>
 {% endif %}

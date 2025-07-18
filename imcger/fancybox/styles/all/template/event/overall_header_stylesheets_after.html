@@ -1,4 +1,13 @@
-{% if (S_IMCGER_FANCYBOX_VERSION == 3 || S_IMCGER_FANCYBOX_VERSION == 5) && IMCGER_FANCYBOX_IMAGE_BORDERWIDTH %}
+{#
+ * Implements the image viewer Fancybox in phpBB.
+ * An extension for the phpBB Forum Software package.
+ *
+ * @copyright (c) 2022, Thorsten Ahlers
+ * @license GNU General Public License, version 2 (GPL-2.0)
+ *
+ #}
+
+{% if S_IMCGER_FANCYBOX_VERSION == 3 && IMCGER_FANCYBOX_IMAGE_BORDERWIDTH %}
 	<style>
 		.fancybox-image{
 			border:{{ IMCGER_FANCYBOX_IMAGE_BORDERWIDTH }}px solid #{{ IMCGER_FANCYBOX_IMAGE_BORDERCOLOR }};
@@ -12,6 +21,31 @@
 		.fancybox__image {
 			border: {{ IMCGER_FANCYBOX_IMAGE_BORDERWIDTH }}px solid #{{ IMCGER_FANCYBOX_IMAGE_BORDERCOLOR }};
 			object-fit: cover !important; /* workaround for gap between border and image */
+		}
+	</style>
+{% endif %}
+
+{% if S_IMCGER_FANCYBOX_VERSION == 5 && IMCGER_FANCYBOX_IMAGE_BORDERWIDTH %}
+	<style>
+		.custom-fancybox-bg {
+			position: absolute;
+			top: -{{ IMCGER_FANCYBOX_IMAGE_BORDERWIDTH }}px;
+			right: -{{ IMCGER_FANCYBOX_IMAGE_BORDERWIDTH }}px;
+			bottom: -{{ IMCGER_FANCYBOX_IMAGE_BORDERWIDTH }}px;
+			left: -{{ IMCGER_FANCYBOX_IMAGE_BORDERWIDTH }}px;
+			background: #{{ IMCGER_FANCYBOX_IMAGE_BORDERCOLOR }};
+			z-index: -1;
+
+			opacity: 1;
+			transition: opacity 0.2s ease;
+		}
+
+		.is-closing .custom-fancybox-bg {
+			opacity: 0;
+		}
+
+		.fancybox__slide.has-image {
+			padding: 40px 80px;
 		}
 	</style>
 {% endif %}
